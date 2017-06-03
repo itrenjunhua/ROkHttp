@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/bt_get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GET请求获取数据" />
+
+    <Button
+        android:id="@+id/bt_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="POST请求获取数据" />
+
+    <Button
+        android:id="@+id/bt_post2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="POST提交数据" />
+
+    <Button
+        android:id="@+id/bt_upfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="带进度上传文件" />
+
+    <Button
+        android:id="@+id/bt_downfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="带进度下载文件" />
+
+</LinearLayout>
