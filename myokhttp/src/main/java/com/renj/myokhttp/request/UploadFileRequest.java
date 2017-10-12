@@ -60,7 +60,7 @@ public class UploadFileRequest extends MyOkHttpRequest<UploadFileRequest> {
      * @param value 值
      * @return
      */
-    public UploadFileRequest addParam(@NonNull String key, @NonNull String value) {
+    private UploadFileRequest addParam(@NonNull String key, @NonNull String value) {
         if (this.mParams == null) this.mParams = new HashMap<String, String>();
         mParams.put(key, value);
         return this;

@@ -87,7 +87,7 @@ public class UpFileActivity extends AppCompatActivity {
         MyOkHttpUtil.upLoadFileRequest()
                 .url(Constant.FILE_UP)
                 .param("username", "abced")
-                .addParam("psw", "123456")
+                .param("psw", "123456")
                 .file("filename", file1)
                 .addFile("filename", file2)
                 .enqueue(new StringResponseHandler() {

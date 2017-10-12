@@ -59,8 +59,8 @@ public class PostSubmitActivity extends AppCompatActivity {
         MyOkHttpUtil.postFormRequest()
                 .url(Constant.FILE_UP)
                 .param("username", "abced")
-                .addParam("psw", "123456")
-                .addParam("nick", "hehe")
+                .param("psw", "123456")
+                .param("nick", "hehe")
                 .tag("aaa")
                 .enqueue(new StringResponseHandler() {
                     @Override

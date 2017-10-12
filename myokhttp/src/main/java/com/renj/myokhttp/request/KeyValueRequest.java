@@ -45,7 +45,7 @@ public abstract class KeyValueRequest<T extends KeyValueRequest> extends MyOkHtt
      * @param value 值
      * @return
      */
-    public T addParam(@NonNull String key, @NonNull String value) {
+    private T addParam(@NonNull String key, @NonNull String value) {
         if (this.mParams == null) this.mParams = new HashMap<String, String>();
         mParams.put(key, value);
         return (T) this;

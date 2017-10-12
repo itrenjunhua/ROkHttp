@@ -25,7 +25,7 @@ import okhttp3.Response;
  * <p>
  * ======================================================================
  */
-public class DownLoadResponseHandler extends MyOkHttpResponseHandler<String> {
+public abstract class DownLoadResponseHandler extends MyOkHttpResponseHandler<String> {
     /**
      * 最终文件保存路径
      */

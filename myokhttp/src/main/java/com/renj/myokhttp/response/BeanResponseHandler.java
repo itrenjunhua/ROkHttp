@@ -23,7 +23,7 @@ import okhttp3.Response;
  * <p/>
  * ======================================================================
  */
-public class BeanResponseHandler<T> extends MyOkHttpResponseHandler<T> {
+public abstract class BeanResponseHandler<T> extends MyOkHttpResponseHandler<T> {
     private Class<T> mClazz;
 
     public BeanResponseHandler() {

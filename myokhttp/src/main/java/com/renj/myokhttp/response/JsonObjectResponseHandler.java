@@ -25,7 +25,7 @@ import okhttp3.Response;
  * <p/>
  * ======================================================================
  */
-public class JsonObjectResponseHandler extends MyOkHttpResponseHandler<JSONObject> {
+public abstract class JsonObjectResponseHandler extends MyOkHttpResponseHandler<JSONObject> {
 
     @Override
     public void parseResponse(Call call, Response response) {

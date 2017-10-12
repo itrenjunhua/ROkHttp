@@ -88,7 +88,7 @@ public abstract class MyOkHttpRequest<T extends MyOkHttpRequest> {
      * @param value 值
      * @return
      */
-    public T addHeader(@NonNull String name, @NonNull String value) {
+    private T addHeader(@NonNull String name, @NonNull String value) {
         if (this.mHeaders == null) this.mHeaders = new LinkedHashMap<String, String>();
         this.mHeaders.put(name, value);
         return (T) this;

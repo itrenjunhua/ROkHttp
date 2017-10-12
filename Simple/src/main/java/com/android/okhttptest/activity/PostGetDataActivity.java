@@ -72,7 +72,7 @@ public class PostGetDataActivity extends AppCompatActivity {
     private void beanData() {
         MyOkHttpUtil.postKeyValuRequest().url(Constant.BASE_URL)
                 .param("cityCode", "101040100") // 不使用完整连接，添加参数
-                .addParam("weatherType", "1")
+                .param("weatherType", "1")
                 .enqueue(new BeanResponseHandler<WeatherBean>() {
                     @Override
                     public void onSucceed(Call call, WeatherBean result) {

@@ -39,9 +39,7 @@ public abstract class MyOkHttpResponseHandler<T> {
      * @param call   Call对象
      * @param result 解析之后的结果，类型为解析时所指定的类型
      */
-    public void onSucceed(Call call, T result) {
-
-    }
+    public abstract void onSucceed(Call call, T result);
 
     /**
      * 错误时的回调，UI线程。

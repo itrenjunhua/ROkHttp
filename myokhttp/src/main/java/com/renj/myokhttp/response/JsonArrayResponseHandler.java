@@ -24,7 +24,7 @@ import okhttp3.Response;
  * <p/>
  * ======================================================================
  */
-public class JsonArrayResponseHandler extends MyOkHttpResponseHandler<JSONArray> {
+public abstract class JsonArrayResponseHandler extends MyOkHttpResponseHandler<JSONArray> {
     @Override
     public void parseResponse(Call call, Response response) {
         try {

@@ -20,7 +20,7 @@ import okhttp3.Response;
  * <p/>
  * ======================================================================
  */
-public class StringResponseHandler extends MyOkHttpResponseHandler<String> {
+public abstract class StringResponseHandler extends MyOkHttpResponseHandler<String> {
 
     @Override
     public void parseResponse(Call call, Response response) {
