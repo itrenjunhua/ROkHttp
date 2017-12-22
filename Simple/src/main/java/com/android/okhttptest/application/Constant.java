@@ -14,7 +14,7 @@ package com.android.okhttptest.application;
  */
 public class Constant {
     // 本地基本路径
-    private static final String BASE_LOCALTION_URL = "http://192.168.0.101:8080/UpLoadFile/";
+    private static final String BASE_LOCALTION_URL = "http://192.168.20.185:8080/MyOkHttpServer/";
     // 文件上传
     public final static String FILE_UP = BASE_LOCALTION_URL + "upload";
     // 文件下载
