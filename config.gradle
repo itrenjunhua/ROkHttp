@@ -1,0 +1,41 @@
+// 统一配置各个 Module 的编译版本、目标版本、依赖库版本等信息
+ext {
+    android = [
+            compileSdk   : 27,
+            buildTools   : "27.1.1",
+            applicationId: "com.android.okhttptest",
+            minSdk       : 17,
+            targetSdk    : 27,
+            versionCode  : 1,
+            versionName  : "1.0"
+    ]
+
+    def dependVersion = [
+            androidSupportV7        : "27.1.1",
+            androidSupportConstraint: "1.0.2",
+            junitSupport            : "4.12",
+            supportTestRunner       : "1.0.1",
+            supportTestEspresso     : "3.0.1",
+
+            jetbrainsAnnotations    : "15.0",
+            okhttp                  : "3.6.0",
+            gson                    : "2.2.4",
+    ]
+
+    dependencies = [
+            // support
+            "androidSupportV7"        : "com.android.support:appcompat-v7:${dependVersion.androidSupportV7}",
+            "androidSupportConstraint": "com.android.support.constraint:constraint-layout:${dependVersion.androidSupportConstraint}",
+            // test
+            "junitSupport"            : "junit:junit:${dependVersion.junitSupport}",
+            "supportTestRunner"       : "com.android.support.test:runner:${dependVersion.supportTestRunner}",
+            "supportTestEspresso"     : "com.android.support.test.espresso:espresso-core:${dependVersion.supportTestEspresso}",
+            // okHttp
+            "okhttp"                  : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp}",
+            // json
+            "gson"                    : "com.google.code.gson:gson:${dependVersion.gson}",
+            // jetbrains 注解
+            "jetbrainsAnnotations"    : "org.jetbrains:annotations-java5:${dependVersion.jetbrainsAnnotations}",
+
+    ]
+}

@@ -19,7 +19,7 @@ import static com.renj.myokhttp.MyOkHttp.mHandler;
  * <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  * onSucceed()、onError()、onNetWork()以及onProgress() 4 个方法在UI线程中执行，当使用的Handler为DownLoadResponseHandler时，onFilePathException()方法在调用的线程中执行</b><br/><br/>
  * <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- * onPraseSucceed()、onOkHttpError()、以及parseResponse() 3 个方法在非UI线程中执行</b><br/>
+ * onParseSucceed()、onOkHttpError()、以及parseResponse() 3 个方法在非UI线程中执行</b><br/>
  * <p/>
  * 修订历史：
  * <p/>
@@ -79,7 +79,7 @@ public abstract class MyOkHttpResponseHandler<T> {
      * @param call
      * @param result
      */
-    protected void onPraseSucceed(final Call call, final T result) {
+    protected void onParseSucceed(final Call call, final T result) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {

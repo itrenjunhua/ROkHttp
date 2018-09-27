@@ -1,5 +1,7 @@
 package com.renj.myokhttp;
 
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,6 +76,8 @@ import okhttp3.Request;
      * @param callNo 请求编号
      * @return
      */
+    @Nullable
+    @org.jetbrains.annotations.Contract(pure = true)
     static CallEntity getCallEntity(long callNo) {
         if (callNo <= 0) return null;
         for (CallEntity callEntity : MyOkHttp.mAllCall) {
@@ -88,6 +92,8 @@ import okhttp3.Request;
      * @param call Call对象
      * @return
      */
+    @Nullable
+    @org.jetbrains.annotations.Contract("null -> null")
     static CallEntity getCallEntity(Call call) {
         if (null == call) return null;
         for (CallEntity callEntity : MyOkHttp.mAllCall) {
@@ -193,6 +199,7 @@ import okhttp3.Request;
      *
      * @return 所有加入到请求管理中并未取消的请求集合
      */
+    @org.jetbrains.annotations.Contract(pure = true)
     static LinkedList<CallEntity> requestQueue() {
         return MyOkHttp.mAllCall;
     }

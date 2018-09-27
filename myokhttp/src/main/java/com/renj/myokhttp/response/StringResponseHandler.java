@@ -25,7 +25,7 @@ public abstract class StringResponseHandler extends MyOkHttpResponseHandler<Stri
     @Override
     public void parseResponse(Call call, Response response) {
         try {
-            onPraseSucceed(call, response.body().string());
+            onParseSucceed(call, response.body().string());
         } catch (IOException e) {
             e.printStackTrace();
             onOkHttpError(call, new MyOkHttpException(e));

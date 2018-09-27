@@ -1,6 +1,8 @@
 package com.renj.myokhttp;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.renj.myokhttp.request.DownloadFileRequest;
 import com.renj.myokhttp.request.GetRequest;
@@ -9,6 +11,8 @@ import com.renj.myokhttp.request.PostJsonRequest;
 import com.renj.myokhttp.request.PostKeyValueRequest;
 import com.renj.myokhttp.request.PostStringRequest;
 import com.renj.myokhttp.request.UploadFileRequest;
+
+import org.jetbrains.annotations.Contract;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -40,7 +44,8 @@ public class MyOkHttpUtil {
      *
      * @param context 上下文
      */
-    public static void initMyOkHttpUtil(Context context) {
+    @org.jetbrains.annotations.Contract("null -> fail")
+    public static void initMyOkHttpUtil(@NonNull Context context) {
         MyOkHttp.initMyOkHttpUtil(context);
     }
 
@@ -50,7 +55,8 @@ public class MyOkHttpUtil {
      * @param context      上下文
      * @param okHttpClient 自定义的OkHttpClient
      */
-    public static void initMyOkHttpUtil(Context context, OkHttpClient okHttpClient) {
+    @org.jetbrains.annotations.Contract("null, _ -> fail")
+    public static void initMyOkHttpUtil(@NonNull Context context, @Nullable OkHttpClient okHttpClient) {
         MyOkHttp.initMyOkHttpUtil(context, okHttpClient);
     }
 
@@ -61,6 +67,7 @@ public class MyOkHttpUtil {
      *
      * @return GetRequest 对象
      */
+    @NonNull
     public static GetRequest getRequest() {
         return new GetRequest();
     }
@@ -70,6 +77,7 @@ public class MyOkHttpUtil {
      *
      * @return PostKeyValueRequest 对象
      */
+    @NonNull
     public static PostKeyValueRequest postKeyValueRequest() {
         return new PostKeyValueRequest();
     }
@@ -79,6 +87,7 @@ public class MyOkHttpUtil {
      *
      * @return PostStringRequest 对象
      */
+    @NonNull
     public static PostStringRequest postStringRequest() {
         return new PostStringRequest();
     }
@@ -88,6 +97,7 @@ public class MyOkHttpUtil {
      *
      * @return PostJsonRequest 对象
      */
+    @NonNull
     public static PostJsonRequest postJsonRequest() {
         return new PostJsonRequest();
     }
@@ -97,6 +107,7 @@ public class MyOkHttpUtil {
      *
      * @return PostFormRequest 对象
      */
+    @NonNull
     public static PostFormRequest postFormRequest() {
         return new PostFormRequest();
     }
@@ -106,6 +117,7 @@ public class MyOkHttpUtil {
      *
      * @return UploadFileRequest 对象
      */
+    @NonNull
     public static UploadFileRequest upLoadFileRequest() {
         return new UploadFileRequest();
     }
@@ -117,6 +129,7 @@ public class MyOkHttpUtil {
      *
      * @return DownloadFileRequest 对象
      */
+    @NonNull
     public static DownloadFileRequest downloadFileRequest() {
         return new DownloadFileRequest();
     }
@@ -128,6 +141,7 @@ public class MyOkHttpUtil {
      *
      * @return 所有加入到请求管理中并未取消的请求集合
      */
+    @Contract(pure = true)
     public static LinkedList<CallEntity> requestQueue() {
         return MyOkHttpRequestManager.requestQueue();
     }
@@ -154,6 +168,7 @@ public class MyOkHttpUtil {
      * @param callNo 请求编号
      * @return 返回一个 CallEntity 或者 null
      */
+    @org.jetbrains.annotations.Contract(pure = true)
     public static CallEntity getCallEntity(long callNo) {
         return MyOkHttpRequestManager.getCallEntity(callNo);
     }
@@ -164,6 +179,7 @@ public class MyOkHttpUtil {
      * @param call Call对象
      * @return 返回一个 CallEntity 或者 null
      */
+    @org.jetbrains.annotations.Contract("null -> null")
     public static CallEntity getCallEntity(Call call) {
         return MyOkHttpRequestManager.getCallEntity(call);
     }

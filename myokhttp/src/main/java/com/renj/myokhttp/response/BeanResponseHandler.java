@@ -53,7 +53,7 @@ public abstract class BeanResponseHandler<T> extends MyOkHttpResponseHandler<T> 
         try {
             String json = response.body().string();
             // 调用onSucceed()方法并传递解析结果
-            onPraseSucceed(call, gson.fromJson(json, mClazz));
+            onParseSucceed(call, gson.fromJson(json, mClazz));
         } catch (IOException e) {
             e.printStackTrace();
             // 发生异常，onOkHttpError()方法

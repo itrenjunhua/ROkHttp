@@ -3,6 +3,8 @@ package com.renj.myokhttp;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.LinkedList;
 
@@ -52,7 +54,8 @@ import okhttp3.OkHttpClient;
      *
      * @param context 上下文
      */
-    static void initMyOkHttpUtil(Context context) {
+    @org.jetbrains.annotations.Contract("null -> fail")
+    static void initMyOkHttpUtil(@NonNull Context context) {
         initMyOkHttpUtil(context, null);
     }
 
@@ -62,7 +65,8 @@ import okhttp3.OkHttpClient;
      * @param context      上下文
      * @param okHttpClient 自定义的OkHttpClient
      */
-    static void initMyOkHttpUtil(Context context, OkHttpClient okHttpClient) {
+    @org.jetbrains.annotations.Contract("null, _ -> fail")
+    static void initMyOkHttpUtil(@NonNull Context context, @Nullable OkHttpClient okHttpClient) {
         if (context == null) throw new NullPointerException("初始化 MyOkHttp 失败：Context 不能为 null 。");
         if (MyOkHttp.mOkHttpClient == null) {
             synchronized (MyOkHttpUtil.class) {

@@ -167,7 +167,7 @@ public class UploadFileRequest extends MyOkHttpRequest<UploadFileRequest> {
         appendFiles(multipartBodyBuilder);// 增加文件参数
         appendTempFiles(multipartBodyBuilder); // 增加文件参数
 
-        if (isEmptyMap(mParams) && isEmptyLits(mFiles) && isEmptyLits(mTempFiles)) {
+        if (isEmptyMap(mParams) && isEmptyList(mFiles) && isEmptyList(mTempFiles)) {
             // builder.get(); // 默认 GET
             LogUtil.e("没有上传任何文件和参数，将 POST 请求方式变为 GET 请求方式");
         } else {
@@ -234,7 +234,7 @@ public class UploadFileRequest extends MyOkHttpRequest<UploadFileRequest> {
      * @param file 问价对象
      * @return
      */
-    private String getFileName(File file) {
+    private String getFileName(@NonNull File file) {
         String fileName = file.getName();
         return fileName;
     }
@@ -270,6 +270,7 @@ public class UploadFileRequest extends MyOkHttpRequest<UploadFileRequest> {
      * @param map
      * @return
      */
+    @org.jetbrains.annotations.Contract(value = "null -> true", pure = true)
     private boolean isEmptyMap(Map map) {
         if (null == map || map.isEmpty()) return true;
         return false;
@@ -281,7 +282,8 @@ public class UploadFileRequest extends MyOkHttpRequest<UploadFileRequest> {
      * @param list
      * @return
      */
-    private boolean isEmptyLits(List list) {
+    @org.jetbrains.annotations.Contract(value = "null -> true", pure = true)
+    private boolean isEmptyList(List list) {
         if (null == list || list.isEmpty()) return true;
         return false;
     }

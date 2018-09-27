@@ -30,7 +30,7 @@ public abstract class JsonArrayResponseHandler extends MyOkHttpResponseHandler<J
         try {
             String responseStr = response.body().string();
             JSONArray jsonArray = new JSONArray(responseStr);
-            onPraseSucceed(call, jsonArray);
+            onParseSucceed(call, jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
             onOkHttpError(call, new MyOkHttpException(e));

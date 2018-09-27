@@ -32,7 +32,7 @@ public abstract class JsonObjectResponseHandler extends MyOkHttpResponseHandler<
         try {
             String responseStr = response.body().string();
             JSONObject jsonObject = new JSONObject(responseStr);
-            onPraseSucceed(call, jsonObject);
+            onParseSucceed(call, jsonObject);
         } catch (IOException e) {
             e.printStackTrace();
             onOkHttpError(call, new MyOkHttpException(e));

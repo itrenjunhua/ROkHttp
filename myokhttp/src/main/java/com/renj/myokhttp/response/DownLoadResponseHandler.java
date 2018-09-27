@@ -36,7 +36,7 @@ public abstract class DownLoadResponseHandler extends MyOkHttpResponseHandler<St
         // 保存文件
         try {
             saveFile(response);
-            onPraseSucceed(call, mSaveFilePath);
+            onParseSucceed(call, mSaveFilePath);
         } catch (MyOkHttpException myOkHttpException) {
             myOkHttpException.printStackTrace();
             onOkHttpError(call, myOkHttpException);
