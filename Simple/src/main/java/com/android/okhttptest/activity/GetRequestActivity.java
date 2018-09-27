@@ -12,7 +12,7 @@ import com.android.okhttptest.R;
 import com.android.okhttptest.application.Constant;
 import com.android.okhttptest.bean.WeatherBean;
 import com.renj.myokhttp.MyOkHttpUtil;
-import com.renj.myokhttp.MyOkHttpExecption;
+import com.renj.myokhttp.MyOkHttpException;
 import com.renj.myokhttp.response.BeanResponseHandler;
 import com.renj.myokhttp.response.StringResponseHandler;
 
@@ -68,7 +68,7 @@ public class GetRequestActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(Call call,MyOkHttpExecption error) {
+                    public void onError(Call call,MyOkHttpException error) {
                         // 处理错误
                         Log.e("GetRequestActivity",error + "");
                     }

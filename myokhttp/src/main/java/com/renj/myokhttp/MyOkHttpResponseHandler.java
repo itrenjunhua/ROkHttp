@@ -47,7 +47,7 @@ public abstract class MyOkHttpResponseHandler<T> {
      * @param call  Call对象
      * @param error 错误信息
      */
-    public void onError(Call call, MyOkHttpExecption error) {
+    public void onError(Call call, MyOkHttpException error) {
         LogUtil.e(call.request().url() + " : " + error + "");
     }
 
@@ -92,12 +92,12 @@ public abstract class MyOkHttpResponseHandler<T> {
      * 失败时的回调，在非UI线程，可以做耗时操作(比如将失败信息写入到文件中保存等)。<br/><br/>
      * <b>特别注意：</b><br/>
      * <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     * 此方法的执行线程并非UI线程，onError(Call call, MyOkHttpExecption error)方法的执行线程为UI线程</b>
+     * 此方法的执行线程并非UI线程，onError(Call call, MyOkHttpException error)方法的执行线程为UI线程</b>
      *
      * @param call
      * @param error
      */
-    protected void onOkHttpError(final Call call, final MyOkHttpExecption error) {
+    protected void onOkHttpError(final Call call, final MyOkHttpException error) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {

@@ -20,7 +20,7 @@ import okhttp3.Request;
  * <p/>
  * ======================================================================
  */
-public class MyOkHttpRequestManager {
+/*public*/ class MyOkHttpRequestManager {
     private MyOkHttpRequestManager() {
     }
 

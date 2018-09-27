@@ -53,7 +53,7 @@ public class PostGetDataActivity extends AppCompatActivity {
 
     // 获取jsonObject结果类型数据
     private void jsonObject() {
-        MyOkHttpUtil.postKeyValuRequest()
+        MyOkHttpUtil.postKeyValueRequest()
                 .url(Constant.ALL_URL)
                 .enqueue(new JsonObjectResponseHandler() {
                     @Override
@@ -70,7 +70,7 @@ public class PostGetDataActivity extends AppCompatActivity {
 
     // post方式提交键值对参数获取Bean结果类型数据
     private void beanData() {
-        MyOkHttpUtil.postKeyValuRequest().url(Constant.BASE_URL)
+        MyOkHttpUtil.postKeyValueRequest().url(Constant.BASE_URL)
                 .param("cityCode", "101040100") // 不使用完整连接，添加参数
                 .param("weatherType", "1")
                 .enqueue(new BeanResponseHandler<WeatherBean>() {

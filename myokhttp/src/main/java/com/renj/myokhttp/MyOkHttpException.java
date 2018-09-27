@@ -12,20 +12,20 @@ package com.renj.myokhttp;
  * <p>
  * ======================================================================
  */
-public class MyOkHttpExecption extends Exception {
-    public MyOkHttpExecption() {
+public class MyOkHttpException extends Exception {
+    public MyOkHttpException() {
         super();
     }
 
-    public MyOkHttpExecption(String message) {
+    public MyOkHttpException(String message) {
         super(message);
     }
 
-    public MyOkHttpExecption(String message, Throwable cause) {
+    public MyOkHttpException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public MyOkHttpExecption(Throwable cause) {
+    public MyOkHttpException(Throwable cause) {
         super(cause);
     }
 }

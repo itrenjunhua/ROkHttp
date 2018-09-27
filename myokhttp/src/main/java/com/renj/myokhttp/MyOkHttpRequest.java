@@ -168,7 +168,7 @@ public abstract class MyOkHttpRequest<T extends MyOkHttpRequest> {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(final Call call, final IOException e) {
-                mMyOkHttpResponseHandler.onOkHttpError(call, new MyOkHttpExecption(e));
+                mMyOkHttpResponseHandler.onOkHttpError(call, new MyOkHttpException(e));
             }
 
             @Override

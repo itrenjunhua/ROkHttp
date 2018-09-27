@@ -53,6 +53,11 @@ public class CallEntity {
 
     @Override
     public String toString() {
-        return "CallEntity {\"callNo\":\"" + callNo + "\",\"call\":\"" + call + "\",\"request\":\"" + request + "\",\"tag\":\"" + tag + "\"}";
+        return "CallEntity{" +
+                "callNo=" + callNo +
+                ", call=" + call +
+                ", request=" + request +
+                ", tag=" + tag +
+                '}';
     }
 }

@@ -21,7 +21,7 @@ import okhttp3.OkHttpClient;
  * <p/>
  * ======================================================================
  */
-public class MyOkHttp {
+/*public*/ class MyOkHttp {
     /**
      * 绑定主线程Looper对象的Handler
      */

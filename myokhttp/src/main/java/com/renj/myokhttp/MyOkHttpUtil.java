@@ -70,7 +70,7 @@ public class MyOkHttpUtil {
      *
      * @return PostKeyValueRequest 对象
      */
-    public static PostKeyValueRequest postKeyValuRequest() {
+    public static PostKeyValueRequest postKeyValueRequest() {
         return new PostKeyValueRequest();
     }
 

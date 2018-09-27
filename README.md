@@ -202,9 +202,9 @@
                     }
 
                     @Override
-                    public void onFilePathException(MyOkHttpExecption myOkHttpExecption) {
+                    public void onFilePathException(MyOkHttpExecption myOkHttpException) {
                         // 指定的文件保存路径有问题
-                        Log.e("DownLoadActivity", myOkHttpExecption + "");
+                        Log.e("DownLoadActivity", myOkHttpException + "");
                     }
                 });
 

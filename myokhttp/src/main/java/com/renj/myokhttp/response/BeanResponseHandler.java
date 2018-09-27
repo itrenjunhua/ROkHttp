@@ -1,7 +1,7 @@
 package com.renj.myokhttp.response;
 
 import com.google.gson.Gson;
-import com.renj.myokhttp.MyOkHttpExecption;
+import com.renj.myokhttp.MyOkHttpException;
 import com.renj.myokhttp.MyOkHttpResponseHandler;
 
 import java.io.IOException;
@@ -57,9 +57,9 @@ public abstract class BeanResponseHandler<T> extends MyOkHttpResponseHandler<T> 
         } catch (IOException e) {
             e.printStackTrace();
             // 发生异常，onOkHttpError()方法
-            onOkHttpError(call, new MyOkHttpExecption(e));
+            onOkHttpError(call, new MyOkHttpException(e));
         } catch (Exception e) {
-            onOkHttpError(call, new MyOkHttpExecption(e));
+            onOkHttpError(call, new MyOkHttpException(e));
         }
     }
 }

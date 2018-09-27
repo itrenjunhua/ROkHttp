@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.android.okhttptest.R;
 import com.android.okhttptest.application.Constant;
-import com.renj.myokhttp.MyOkHttpExecption;
+import com.renj.myokhttp.MyOkHttpException;
 import com.renj.myokhttp.MyOkHttpUtil;
 import com.renj.myokhttp.response.DownLoadResponseHandler;
 
@@ -72,9 +72,9 @@ public class DownLoadActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFilePathException(MyOkHttpExecption myOkHttpExecption) {
+                    public void onFilePathException(MyOkHttpException myOkHttpException) {
                         // 指定的文件保存路径有问题
-                        Log.e("DownLoadActivity", myOkHttpExecption + "");
+                        Log.e("DownLoadActivity", myOkHttpException + "");
                     }
                 });
     }

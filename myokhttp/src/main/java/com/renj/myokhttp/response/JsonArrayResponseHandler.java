@@ -1,6 +1,6 @@
 package com.renj.myokhttp.response;
 
-import com.renj.myokhttp.MyOkHttpExecption;
+import com.renj.myokhttp.MyOkHttpException;
 import com.renj.myokhttp.MyOkHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -33,12 +33,12 @@ public abstract class JsonArrayResponseHandler extends MyOkHttpResponseHandler<J
             onPraseSucceed(call, jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
-            onOkHttpError(call, new MyOkHttpExecption(e));
+            onOkHttpError(call, new MyOkHttpException(e));
         } catch (JSONException e) {
             e.printStackTrace();
-            onOkHttpError(call, new MyOkHttpExecption(e));
+            onOkHttpError(call, new MyOkHttpException(e));
         } catch (Exception e) {
-            onOkHttpError(call, new MyOkHttpExecption(e));
+            onOkHttpError(call, new MyOkHttpException(e));
         }
     }
 }

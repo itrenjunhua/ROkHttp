@@ -2,7 +2,7 @@ package com.renj.myokhttp.request;
 
 import android.support.annotation.NonNull;
 
-import com.renj.myokhttp.MyOkHttpExecption;
+import com.renj.myokhttp.MyOkHttpException;
 import com.renj.myokhttp.MyOkHttpRequest;
 import com.renj.myokhttp.MyOkHttpResponseHandler;
 import com.renj.myokhttp.body.DownloadResponseBody;
@@ -142,9 +142,9 @@ public class DownloadFileRequest extends MyOkHttpRequest<DownloadFileRequest> {
             // 对目标目录进行检查
             try {
                 handler.checkFilePath(mFilePath, mFileP, mFileDir, mFileD, mFileName);
-            } catch (MyOkHttpExecption myOkHttpExecption) {
-                myOkHttpExecption.printStackTrace();
-                handler.onFilePathException(myOkHttpExecption);
+            } catch (MyOkHttpException myOkHttpException) {
+                myOkHttpException.printStackTrace();
+                handler.onFilePathException(myOkHttpException);
             }
         }
     }

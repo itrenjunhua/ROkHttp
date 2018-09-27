@@ -1,6 +1,6 @@
 package com.renj.myokhttp.response;
 
-import com.renj.myokhttp.MyOkHttpExecption;
+import com.renj.myokhttp.MyOkHttpException;
 import com.renj.myokhttp.MyOkHttpResponseHandler;
 
 import java.io.IOException;
@@ -28,9 +28,9 @@ public abstract class StringResponseHandler extends MyOkHttpResponseHandler<Stri
             onPraseSucceed(call, response.body().string());
         } catch (IOException e) {
             e.printStackTrace();
-            onOkHttpError(call, new MyOkHttpExecption(e));
+            onOkHttpError(call, new MyOkHttpException(e));
         }catch (Exception e){
-            onOkHttpError(call,new MyOkHttpExecption(e));
+            onOkHttpError(call,new MyOkHttpException(e));
         }
     }
 }
