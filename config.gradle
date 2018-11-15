@@ -17,7 +17,7 @@ ext {
             supportTestRunner       : "1.0.1",
             supportTestEspresso     : "3.0.1",
 
-            jetbrainsAnnotations    : "15.0",
+            jetbrainsAnnotations    : "13.0",
             okhttp                  : "3.6.0",
             gson                    : "2.2.4",
     ]
@@ -35,7 +35,7 @@ ext {
             // json
             "gson"                    : "com.google.code.gson:gson:${dependVersion.gson}",
             // jetbrains 注解
-            "jetbrainsAnnotations"    : "org.jetbrains:annotations-java5:${dependVersion.jetbrainsAnnotations}",
+            "jetbrainsAnnotations"    : "org.jetbrains:annotations:${dependVersion.jetbrainsAnnotations}",
 
     ]
 }
