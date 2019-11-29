@@ -9,10 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Simple" />
-            <option value="$PROJECT_DIR$/myokhttp" />
+            <option value="$PROJECT_DIR$/rokhttp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

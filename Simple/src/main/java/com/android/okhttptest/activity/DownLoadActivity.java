@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 import com.android.okhttptest.R;
 import com.android.okhttptest.application.Constant;
-import com.renj.myokhttp.MyOkHttpException;
-import com.renj.myokhttp.MyOkHttpUtil;
-import com.renj.myokhttp.response.DownLoadResponseHandler;
+import com.renj.okhttp.ROkHttpException;
+import com.renj.okhttp.ROkHttp;
+import com.renj.okhttp.response.DownLoadResponse;
 
 import java.io.File;
 
@@ -48,13 +48,13 @@ public class DownLoadActivity extends AppCompatActivity {
     private void downFile() {
         File directory = Environment.getExternalStorageDirectory();
         File file = new File(directory,"Pictures/downfile.png");
-        MyOkHttpUtil.downloadFileRequest()
+        ROkHttp.getInstance().downloadFileRequest()
                 .url(Constant.FILE_DOWN)
 //                .fileDir(new File(directory,"Pictures"))
 //                .fileName("downfile.png")
                 // 设置了filePath()，那么设置fileDir()和fileName()的值无效
                 .filePath(file)
-                .enqueue(new DownLoadResponseHandler() {
+                .enqueue(new DownLoadResponse() {
                     @Override
                     public void onSucceed(Call call, String result) {
                         stringResult.setText("文件保存路径：" + result);
@@ -72,9 +72,9 @@ public class DownLoadActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFilePathException(MyOkHttpException myOkHttpException) {
+                    public void onFilePathException(ROkHttpException rOkHttpException) {
                         // 指定的文件保存路径有问题
-                        Log.e("DownLoadActivity", myOkHttpException + "");
+                        Log.e("DownLoadActivity", rOkHttpException + "");
                     }
                 });
     }

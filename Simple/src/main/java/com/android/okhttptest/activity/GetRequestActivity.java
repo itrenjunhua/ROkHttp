@@ -11,10 +11,10 @@ import android.widget.Toast;
 import com.android.okhttptest.R;
 import com.android.okhttptest.application.Constant;
 import com.android.okhttptest.bean.WeatherBean;
-import com.renj.myokhttp.MyOkHttpUtil;
-import com.renj.myokhttp.MyOkHttpException;
-import com.renj.myokhttp.response.BeanResponseHandler;
-import com.renj.myokhttp.response.StringResponseHandler;
+import com.renj.okhttp.ROkHttp;
+import com.renj.okhttp.ROkHttpException;
+import com.renj.okhttp.response.BeanResponse;
+import com.renj.okhttp.response.StringResponse;
 
 import okhttp3.Call;
 
@@ -53,9 +53,9 @@ public class GetRequestActivity extends AppCompatActivity {
 
     // 获取STRING结果类型数据
     private void getStringData() {
-        MyOkHttpUtil.getRequest()
+        ROkHttp.getInstance().getRequest()
                 .url(Constant.ALL_URL)
-                .enqueue(new StringResponseHandler() {
+                .enqueue(new StringResponse() {
                     @Override
                     public void onSucceed(Call call, String result) {
                         stringResult.setText(result);
@@ -68,7 +68,7 @@ public class GetRequestActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(Call call,MyOkHttpException error) {
+                    public void onError(Call call, ROkHttpException error) {
                         // 处理错误
                         Log.e("GetRequestActivity",error + "");
                     }
@@ -77,11 +77,11 @@ public class GetRequestActivity extends AppCompatActivity {
 
     // 获取Bean结果类型数据
     private void getBeanData() {
-        MyOkHttpUtil.getRequest()
+        ROkHttp.getInstance().getRequest()
                 .url(Constant.BASE_URL)
                 .param("cityCode", "101040100") // 不使用完整连接，添加参数
                 .param("weatherType", "1")
-                .enqueue(new BeanResponseHandler<WeatherBean>() {
+                .enqueue(new BeanResponse<WeatherBean>() {
                     @Override
                     public void onSucceed(Call call, WeatherBean result) {
                         WeatherBean.WeatherinfoEntity weatherinfo = result.getWeatherinfo();

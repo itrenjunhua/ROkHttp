@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import com.android.okhttptest.R;
 import com.android.okhttptest.application.Constant;
-import com.renj.myokhttp.MyOkHttpUtil;
-import com.renj.myokhttp.response.StringResponseHandler;
+import com.renj.okhttp.ROkHttp;
+import com.renj.okhttp.response.StringResponse;
 
 import java.io.File;
 
@@ -57,10 +57,10 @@ public class UpFileActivity extends AppCompatActivity {
     private void singleFile() {
         File directory = Environment.getExternalStorageDirectory();
         File file = new File(directory,"Pictures/upload1.jpg");
-        MyOkHttpUtil.upLoadFileRequest()
+        ROkHttp.getInstance().upLoadFileRequest()
                 .url(Constant.FILE_UP)
                 .file("filename",file)
-                .enqueue(new StringResponseHandler(){
+                .enqueue(new StringResponse(){
                     @Override
                     public void onSucceed(Call call, String result) {
                         stringResult.setText(result);
@@ -84,13 +84,13 @@ public class UpFileActivity extends AppCompatActivity {
         File directory = Environment.getExternalStorageDirectory();
         File file1 = new File(directory,"Pictures/upload1.jpg");
         File file2 = new File(directory,"Pictures/upload2.jpg");
-        MyOkHttpUtil.upLoadFileRequest()
+        ROkHttp.getInstance().upLoadFileRequest()
                 .url(Constant.FILE_UP)
                 .param("username", "abced")
                 .param("psw", "123456")
                 .file("filename", file1)
                 .addFile("filename", file2)
-                .enqueue(new StringResponseHandler() {
+                .enqueue(new StringResponse() {
                     @Override
                     public void onSucceed(Call call, String result) {
                         stringResult2.setText(result);

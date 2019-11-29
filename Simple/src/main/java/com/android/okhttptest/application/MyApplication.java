@@ -2,7 +2,7 @@ package com.android.okhttptest.application;
 
 import android.app.Application;
 
-import com.renj.myokhttp.MyOkHttpUtil;
+import com.renj.okhttp.ROkHttp;
 
 /**
  * ======================================================================
@@ -20,6 +20,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        MyOkHttpUtil.initMyOkHttpUtil(this);
+        ROkHttp.initROkHttp(this);
     }
 }

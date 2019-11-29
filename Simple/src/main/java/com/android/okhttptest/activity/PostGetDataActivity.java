@@ -10,9 +10,9 @@ import android.widget.TextView;
 import com.android.okhttptest.R;
 import com.android.okhttptest.application.Constant;
 import com.android.okhttptest.bean.WeatherBean;
-import com.renj.myokhttp.MyOkHttpUtil;
-import com.renj.myokhttp.response.BeanResponseHandler;
-import com.renj.myokhttp.response.JsonObjectResponseHandler;
+import com.renj.okhttp.ROkHttp;
+import com.renj.okhttp.response.BeanResponse;
+import com.renj.okhttp.response.JsonObjectResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,9 +53,9 @@ public class PostGetDataActivity extends AppCompatActivity {
 
     // 获取jsonObject结果类型数据
     private void jsonObject() {
-        MyOkHttpUtil.postKeyValueRequest()
+        ROkHttp.getInstance().postKeyValueRequest()
                 .url(Constant.ALL_URL)
-                .enqueue(new JsonObjectResponseHandler() {
+                .enqueue(new JsonObjectResponse() {
                     @Override
                     public void onSucceed(Call call, JSONObject result) {
                         try {
@@ -70,10 +70,10 @@ public class PostGetDataActivity extends AppCompatActivity {
 
     // post方式提交键值对参数获取Bean结果类型数据
     private void beanData() {
-        MyOkHttpUtil.postKeyValueRequest().url(Constant.BASE_URL)
+        ROkHttp.getInstance().postKeyValueRequest().url(Constant.BASE_URL)
                 .param("cityCode", "101040100") // 不使用完整连接，添加参数
                 .param("weatherType", "1")
-                .enqueue(new BeanResponseHandler<WeatherBean>() {
+                .enqueue(new BeanResponse<WeatherBean>() {
                     @Override
                     public void onSucceed(Call call, WeatherBean result) {
                         WeatherBean.WeatherinfoEntity weatherinfo = result.getWeatherinfo();

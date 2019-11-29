@@ -1,19 +1,18 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdk
 
     // 默认配置
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdk
         targetSdkVersion rootProject.ext.android.targetSdk
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
 
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -26,11 +25,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // support
     implementation rootProject.ext.dependencies["androidSupportV7"]
-    implementation rootProject.ext.dependencies["androidSupportConstraint"]
-    // test
-    implementation rootProject.ext.dependencies["junitSupport"]
-    implementation rootProject.ext.dependencies["supportTestRunner"]
-    implementation rootProject.ext.dependencies["supportTestEspresso"]
 
-    implementation project(':rokhttp')
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["jetbrainsAnnotations"]
 }

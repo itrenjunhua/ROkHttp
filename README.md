@@ -1,4 +1,4 @@
-# MyOkHttp
+# ROkHttp
 对okhttp网络框架的进一步封装，包含一个库文件和一个实例
 
 ## 主要功能说明
@@ -11,7 +11,7 @@
 ### Get 请求
 > Get方式获取String类型的数据
 	
-	MyOkHttpUtil.getRequest()
+	ROkHttp.getInstance().getRequest()
                 .url(Constant.ALL_URL)
                 .enqueue(new StringResponseHandler() {
                     @Override
@@ -34,7 +34,7 @@
 
 > Get方式获取Bean类型的数据
 	
-	MyOkHttpUtil.getRequest()
+	ROkHttp.getInstance().getRequest()
                 .url(Constant.BASE_URL)
                 .param("cityCode", "101040100") // 不使用完整连接，添加参数
                 .param("weatherType", "1")
@@ -49,7 +49,7 @@
 ### Post 请求
 > Post 请求获取 JsonObject 类型数据
 	
-	MyOkHttpUtil.postKeyValuRequest()
+	ROkHttp.getInstance().postKeyValuRequest()
                 .url(Constant.ALL_URL)
                 .enqueue(new JsonObjectResponseHandler() {
                     @Override
@@ -65,7 +65,7 @@
 
 > Post 请求提交键值对参数获取 Bean 类型数据
 	
-	MyOkHttpUtil.postKeyValuRequest().url(Constant.BASE_URL)
+	ROkHttp.getInstance().postKeyValuRequest().url(Constant.BASE_URL)
                 .param("cityCode", "101040100") // 不使用完整连接，添加参数
                 .param("weatherType", "1")
                 .enqueue(new BeanResponseHandler<WeatherBean>() {
@@ -77,7 +77,7 @@
                 });
 > Post 请求提交表单数据
 
-	MyOkHttpUtil.postFormRequest()
+	ROkHttp.getInstance().postFormRequest()
                 .url(Constant.FILE_UP)
                 .param("username", "abced")
                 .param("psw", "123456")
@@ -92,7 +92,7 @@
 > Post 请求提交 String 类型数据
 	
 	String string = "姓名：张三；年龄：22,；性别：男";
-        MyOkHttpUtil.postStringRequest()
+        ROkHttp.getInstance().postStringRequest()
                 .url(Constant.JSON_URL)
                 .string(string)
                 .enqueue(new StringResponseHandler() {
@@ -110,7 +110,7 @@
                 "    \"nick\": \"hehe\",\n" +
                 "    \"sex\": \"man\"\n" +
                 "}";
-        MyOkHttpUtil.postJsonRequest()
+        ROkHttp.getInstance().postJsonRequest()
                 .url(Constant.JSON_URL)
                 .json(jsonString)
                 .enqueue(new StringResponseHandler() {
@@ -125,7 +125,7 @@
 
 	File directory = Environment.getExternalStorageDirectory();
         File file = new File(directory,"Pictures/upload1.jpg");
-        MyOkHttpUtil.upLoadFileRequest()
+        ROkHttp.getInstance().upLoadFileRequest()
                 .url(Constant.FILE_UP)
                 .file("filename",file)
                 .enqueue(new StringResponseHandler(){
@@ -151,7 +151,7 @@
 	File directory = Environment.getExternalStorageDirectory();
         File file1 = new File(directory,"Pictures/upload1.jpg");
         File file2 = new File(directory,"Pictures/upload2.jpg");
-        MyOkHttpUtil.upLoadFileRequest()
+        ROkHttp.getInstance().upLoadFileRequest()
                 .url(Constant.FILE_UP)
                 .param("username", "abced")
                 .param("psw", "123456")
@@ -178,7 +178,7 @@
 
 	File directory = Environment.getExternalStorageDirectory();
         File file = new File(directory,"Pictures/downfile.png");
-        MyOkHttpUtil.downloadFileRequest()
+        ROkHttp.getInstance().downloadFileRequest()
                 .url(Constant.FILE_DOWN)
                 // .fileDir(new File(directory,"Pictures"))
                 // .fileName("downfile.png")
@@ -202,22 +202,22 @@
                     }
 
                     @Override
-                    public void onFilePathException(MyOkHttpExecption myOkHttpException) {
+                    public void onFilePathException(MyOkHttpExecption rOkHttpException) {
                         // 指定的文件保存路径有问题
-                        Log.e("DownLoadActivity", myOkHttpException + "");
+                        Log.e("DownLoadActivity", rOkHttpException + "");
                     }
                 });
 
 ### 取消请求
 > 取消单个请求
 
-	MyOkHttpUtil.cancel("aaa");
+	ROkHttp.getInstance().cancel("aaa");
 > 取消多个请求
 	
-	MyOkHttpRequestManager.cancelAll();
+	ROkHttp.getInstance().cancelAll();
 
 ## 代码说明和运行注意事项
-> 1.代码中的 MyOkHttpServer 是服务器代码，需要部署到Tomcat服务器上  
+> 1.代码中的 ROkHttpServer 是服务器代码，需要部署到Tomcat服务器上  
 > 2.运行的项目演示在文件上传和下载部分是需要本地服务器一起使用才能有结果，否则没有结果(所以，需要在第 1 步当中部署到服务器并启动服务器，然后需要将Android中的代码服务器地址进行修改)  
-> 3.可以在<a href="http://download.csdn.net/download/itrenj/9797816"> CSDN中 </a>下载包含服务器的代码的压缩包(压缩包同时也包含了以上MyOkHttp的代码)  
+> 3.可以在<a href="http://download.csdn.net/download/itrenj/9797816"> CSDN中 </a>下载包含服务器的代码的压缩包(压缩包同时也包含了以上ROkHttp的代码)  
 > 4.在<a href="http://blog.csdn.net/itrenj/article/details/69787931"> CSDN博客中 </a>有okhttp简单使用的说明  

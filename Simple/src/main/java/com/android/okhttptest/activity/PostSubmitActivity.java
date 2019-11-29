@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.android.okhttptest.R;
 import com.android.okhttptest.application.Constant;
-import com.renj.myokhttp.MyOkHttpUtil;
-import com.renj.myokhttp.response.StringResponseHandler;
+import com.renj.okhttp.ROkHttp;
+import com.renj.okhttp.response.StringResponse;
 
 import okhttp3.Call;
 
@@ -17,8 +17,8 @@ import okhttp3.Call;
  * POST提交数据
  */
 public class PostSubmitActivity extends AppCompatActivity {
-    private Button btForm,btString, btJson;
-    private TextView stringResult, stringResult2,stringResult3;
+    private Button btForm, btString, btJson;
+    private TextView stringResult, stringResult2, stringResult3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,38 +56,38 @@ public class PostSubmitActivity extends AppCompatActivity {
 
     // 提交表单数据
     private void submitForm() {
-        MyOkHttpUtil.postFormRequest()
+        ROkHttp.getInstance().postFormRequest()
                 .url(Constant.FILE_UP)
                 .param("username", "abced")
                 .param("psw", "123456")
                 .param("nick", "hehe")
                 .tag("aaa")
-                .enqueue(new StringResponseHandler() {
+                .enqueue(new StringResponse() {
                     @Override
                     public void onSucceed(Call call, String result) {
                         stringResult.setText(result);
                     }
                 });
         // 取消请求
-        //MyOkHttpUtil.cancel("aaa");
+        //ROkHttp.cancel("aaa");
     }
 
     // 提交STRING数据
     private void submitString() {
         String string = "姓名：张三；年龄：22,；性别：男";
-        MyOkHttpUtil.postStringRequest()
+        ROkHttp.getInstance().postStringRequest()
                 .url(Constant.JSON_URL)
                 .string(string)
-                .enqueue(new StringResponseHandler() {
+                .enqueue(new StringResponse() {
                     @Override
                     public void onSucceed(Call call, String result) {
                         stringResult2.setText(result);
                     }
                 });
         // 获取所有的未取消的请求集合
-//        LinkedList<CallEntity> callEntities = MyOkHttpUtil.requestQueue();
+//        LinkedList<CallEntity> callEntities = ROkHttp.requestQueue();
 //        for (CallEntity callEntity : callEntities) {
-//            LogUtil.i(callEntity.toString());
+//            RLog.i(callEntity.toString());
 //        }
     }
 
@@ -99,10 +99,10 @@ public class PostSubmitActivity extends AppCompatActivity {
                 "    \"nick\": \"hehe\",\n" +
                 "    \"sex\": \"man\"\n" +
                 "}";
-        MyOkHttpUtil.postJsonRequest()
+        ROkHttp.getInstance().postJsonRequest()
                 .url(Constant.JSON_URL)
                 .json(jsonString)
-                .enqueue(new StringResponseHandler() {
+                .enqueue(new StringResponse() {
                     @Override
                     public void onSucceed(Call call, String result) {
                         stringResult3.setText(result);
