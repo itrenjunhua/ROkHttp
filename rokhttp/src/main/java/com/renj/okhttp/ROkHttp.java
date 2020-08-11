@@ -158,7 +158,7 @@ public class ROkHttp {
      */
     @NonNull
     public PostKeyValueRequest postKeyValueRequest(OkHttpClient okHttpClient) {
-        return ROkHttpManager.postKeyValueRequest();
+        return ROkHttpManager.postKeyValueRequest(okHttpClient);
     }
 
     /**
