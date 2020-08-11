@@ -18,6 +18,7 @@ import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
@@ -40,6 +41,14 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
     private Map<String, String> mParams;
     private List<Map<String, File>> mFiles;
     private List<TempFile> mTempFiles;
+
+    public UploadFileRequest() {
+        super();
+    }
+
+    public UploadFileRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
 
     /**
      * 添加一个键值对参数
@@ -156,7 +165,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
     /**
      * 将参数(键值对参数、文件参数)加入到请求中
      *
-     * @param builder                  Request.Builder对象
+     * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
      * @param <E>
      */

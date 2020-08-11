@@ -5,6 +5,7 @@ import com.renj.okhttp.ROkHttpResponse;
 
 import java.util.Set;
 
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 /**
@@ -20,6 +21,14 @@ import okhttp3.Request;
  * ======================================================================
  */
 public class GetRequest extends KeyValueRequest<GetRequest> {
+    public GetRequest() {
+        super();
+    }
+
+    public GetRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
+
     /**
      * 最终拼接参数
      *

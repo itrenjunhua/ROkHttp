@@ -48,6 +48,19 @@ public abstract class ROkHttpRequest<T extends ROkHttpRequest> {
     }
 
     /**
+     * 构造方法，检查是否已经对ROkHttp进行了初始化
+     */
+    public ROkHttpRequest(OkHttpClient okHttpClient) {
+        this.mHandler = ROkHttpManager.mHandler;
+        if (okHttpClient != null)
+            this.mOkHttpClient = okHttpClient;
+        else
+            this.mOkHttpClient = ROkHttpManager.mOkHttpClient;
+        if (this.mOkHttpClient == null)
+            throw new NullPointerException("ROkHttpManager 初始化异常：" + "没有在 Application 中调用 ROkHttpManager.initOkHttpUtil(Context context) 方法进行初始化");
+    }
+
+    /**
      * 设置访问地址
      *
      * @param url 访问地址
@@ -154,7 +167,7 @@ public abstract class ROkHttpRequest<T extends ROkHttpRequest> {
     /**
      * 开始执行网络访问
      *
-     * @param <E>                      泛型，期望的结果类型
+     * @param <E>              泛型，期望的结果类型
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
      */
     public <E> void enqueue(@NonNull final ROkHttpResponse<E> mROkHttpResponse) {
@@ -263,7 +276,7 @@ public abstract class ROkHttpRequest<T extends ROkHttpRequest> {
      * 向OKHttp的Request对象中添加参数的方法<br/>
      * <b>不同的请求，添加的参数不同，所以该方法由超类定义，子类实现</b>
      *
-     * @param builder                  Request.Builder对象
+     * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
      */
     protected abstract <E> void putParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse);

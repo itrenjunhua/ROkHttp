@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 /**
@@ -25,6 +26,14 @@ import okhttp3.Request;
  */
 public abstract class KeyValueRequest<T extends KeyValueRequest> extends ROkHttpRequest<T> {
     protected Map<String, String> mParams;
+
+    public KeyValueRequest() {
+        super();
+    }
+
+    public KeyValueRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
 
     /**
      * 添加一个键值对参数
