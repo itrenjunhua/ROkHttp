@@ -3,6 +3,7 @@ package com.renj.okhttp;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.renj.okhttp.request.DownloadFileRequest;
 import com.renj.okhttp.request.GetRequest;
@@ -64,6 +65,56 @@ public class ROkHttp {
     @org.jetbrains.annotations.Contract("null, _ -> fail")
     public static void initROkHttp(@NonNull Context context, @Nullable OkHttpClient okHttpClient) {
         ROkHttpManager.initROkHttp(context, okHttpClient);
+    }
+
+    /* ------- 获取OkHttpClient.Builder对象,用于添加拦截器 -------- */
+
+    /**
+     * 获取一个clone的OkHttpClient.Builder对象,可用于特定接口添加拦截器
+     *
+     * @return {@link OkHttpClient.Builder}
+     */
+//    public OkHttpClient.Builder getOkHttpClientBuilder() {
+//        return ROkHttpManager.mOkHttpClient.newBuilder();
+//    }
+
+    /* ----------------------- 日志管理 ----------------------- */
+
+    /**
+     * 设置是否显示日志
+     *
+     * @param showLog true：显示  false：不显示
+     */
+    public static void setShowLog(boolean showLog) {
+        RLog.setShowLog(showLog);
+    }
+
+    /**
+     * 设置显示日志的Tag
+     *
+     * @param logTag 日志的Tag，不能为null和""
+     */
+    public static void setLogTag(String logTag) {
+        if (!TextUtils.isEmpty(logTag))
+            RLog.setAppTAG(logTag);
+    }
+
+    /**
+     * 设置是否显示打印日志位置的全类名
+     *
+     * @param isFullClassName true：显示  false：不显示
+     */
+    public static void setFullClassName(boolean isFullClassName) {
+        RLog.setFullClassName(isFullClassName);
+    }
+
+    /**
+     * 设置日志显示级别
+     *
+     * @param level {@link android.util.Log#VERBOSE} 等
+     */
+    public static void setLogLevel(int level) {
+        RLog.setLogLevel(level);
     }
 
     /* ----------------------- 获取请求方法 ----------------------- */

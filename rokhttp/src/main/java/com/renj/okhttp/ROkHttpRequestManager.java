@@ -81,7 +81,7 @@ import okhttp3.Request;
     static CallEntity getCallEntity(long callNo) {
         if (callNo <= 0) return null;
         for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-            if (callNo == callEntity.callNo) return callEntity;
+            if (callNo == callEntity.getCallNo()) return callEntity;
         }
         return null;
     }
@@ -97,7 +97,7 @@ import okhttp3.Request;
     static CallEntity getCallEntity(Call call) {
         if (null == call) return null;
         for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-            if (call.equals(callEntity.call)) return callEntity;
+            if (call.equals(callEntity.getCall())) return callEntity;
         }
         return null;
     }
@@ -112,11 +112,11 @@ import okhttp3.Request;
         List<CallEntity> callEntities = new ArrayList<CallEntity>();
         if (null == tag) {
             for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-                if (null == callEntity.tag) callEntities.add(callEntity);
+                if (null == callEntity.getTag()) callEntities.add(callEntity);
             }
         } else {
             for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-                if (tag.equals(callEntity.tag)) callEntities.add(callEntity);
+                if (tag.equals(callEntity.getTag())) callEntities.add(callEntity);
             }
         }
         return callEntities;
@@ -130,7 +130,7 @@ import okhttp3.Request;
     static void cancel(long callNo) {
         if (callNo <= 0) return;
         for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-            if (callNo == callEntity.callNo) cancelCall(callEntity);
+            if (callNo == callEntity.getCallNo()) cancelCall(callEntity);
         }
     }
 
@@ -142,7 +142,7 @@ import okhttp3.Request;
     static void cancel(Call call) {
         if (null == call) return;
         for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-            if (call.equals(callEntity.call)) cancelCall(callEntity);
+            if (call.equals(callEntity.getCall())) cancelCall(callEntity);
         }
     }
 
@@ -154,7 +154,7 @@ import okhttp3.Request;
     static void cancel(Request request) {
         if (null == request) return;
         for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-            if (request.equals(callEntity.request)) cancelCall(callEntity);
+            if (request.equals(callEntity.getRequest())) cancelCall(callEntity);
         }
     }
 
@@ -166,11 +166,11 @@ import okhttp3.Request;
     static void cancel(Object tag) {
         if (null == tag) {
             for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-                if (null == callEntity.tag) cancelCall(callEntity);
+                if (null == callEntity.getTag()) cancelCall(callEntity);
             }
         } else {
             for (CallEntity callEntity : ROkHttpManager.mAllCall) {
-                if (tag.equals(callEntity.tag)) cancelCall(callEntity);
+                if (tag.equals(callEntity.getTag())) cancelCall(callEntity);
             }
         }
     }

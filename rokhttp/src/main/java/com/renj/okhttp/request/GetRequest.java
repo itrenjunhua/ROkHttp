@@ -28,9 +28,7 @@ public class GetRequest extends KeyValueRequest<GetRequest> {
      */
     @Override
     protected <E> void postParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse) {
-        if (mUrl.endsWith("?")) {
-            addParams();
-        } else {
+        if (!mUrl.endsWith("?")) {
             if (!mUrl.endsWith("&")) {
                 if (mUrl.contains("?")) {
                     mUrl = mUrl + "&";
@@ -38,8 +36,8 @@ public class GetRequest extends KeyValueRequest<GetRequest> {
                     mUrl = mUrl + "?";
                 }
             }
-            addParams();
         }
+        addParams();
     }
 
     private void addParams() {

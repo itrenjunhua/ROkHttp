@@ -15,10 +15,14 @@ import android.util.Log;
  * ======================================================================
  */
 public class RLog {
-    private static String TAG = "ROkHttpManager RLog";
+    private static String TAG = "ROkHttp Log";
     private static boolean showLog = BuildConfig.DEBUG;
     private static boolean IS_FULL_CLASSNAME;
     private static int LOG_LEVEL = Log.VERBOSE;
+
+    public static void setShowLog(boolean showLog) {
+        RLog.showLog = showLog;
+    }
 
     public static void setFullClassName(boolean isFullClassName) {
         RLog.IS_FULL_CLASSNAME = isFullClassName;
@@ -31,7 +35,6 @@ public class RLog {
     public static void setAppTAG(String tag) {
         RLog.TAG = tag;
     }
-
 
     public static void v(String msg) {
         if (showLog && LOG_LEVEL <= Log.VERBOSE) {
