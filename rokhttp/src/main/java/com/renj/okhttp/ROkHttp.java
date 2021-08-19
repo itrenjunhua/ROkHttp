@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.renj.okhttp.request.DownloadFileRequest;
 import com.renj.okhttp.request.GetRequest;
+import com.renj.okhttp.request.PostByteArrayRequest;
 import com.renj.okhttp.request.PostFormRequest;
 import com.renj.okhttp.request.PostJsonRequest;
 import com.renj.okhttp.request.PostKeyValueRequest;
@@ -119,6 +120,16 @@ public class ROkHttp {
     }
 
     /**
+     * 获取POST方式提交byte数组的请求
+     *
+     * @return PostByteArrayRequest 对象
+     */
+    @NonNull
+    public PostByteArrayRequest postByteArrayRequest() {
+        return ROkHttpManager.postByteArrayRequest();
+    }
+
+    /**
      * 获取带进度的上传文件请求
      *
      * @return UploadFileRequest 对象
@@ -196,7 +207,7 @@ public class ROkHttp {
      * @param tag Request对象的Tag
      * @return List集合
      */
-    public List<CallEntity> getCallEntitys(Object tag) {
+    public List<CallEntity> getCallEntities(Object tag) {
         return ROkHttpRequestManager.getCallEntities(tag);
     }
 

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 
 import com.renj.okhttp.request.DownloadFileRequest;
 import com.renj.okhttp.request.GetRequest;
+import com.renj.okhttp.request.PostByteArrayRequest;
 import com.renj.okhttp.request.PostFormRequest;
 import com.renj.okhttp.request.PostJsonRequest;
 import com.renj.okhttp.request.PostKeyValueRequest;
@@ -140,6 +141,16 @@ import okhttp3.OkHttpClient;
     @NonNull
     static PostFormRequest postFormRequest() {
         return new PostFormRequest();
+    }
+
+    /**
+     * 获取POST方式提交byte数组的请求
+     *
+     * @return PostByteArrayRequest 对象
+     */
+    @NonNull
+    static PostByteArrayRequest postByteArrayRequest() {
+        return new PostByteArrayRequest();
     }
 
     /**

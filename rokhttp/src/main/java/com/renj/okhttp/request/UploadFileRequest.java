@@ -235,8 +235,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * @return
      */
     private String getFileName(@NonNull File file) {
-        String fileName = file.getName();
-        return fileName;
+        return file.getName();
     }
 
     /**
