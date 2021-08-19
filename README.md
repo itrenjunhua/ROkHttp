@@ -216,6 +216,12 @@
 	
 	ROkHttp.getInstance().cancelAll();
 
+## 混淆
+
+	-keep class com.renj.okhttp.**{*;}
+  	-dontwarn com.renj.okhttp.**
+
+
 ## 代码说明和运行注意事项
 > 1.代码中的 ROkHttpServer 是服务器代码，需要部署到Tomcat服务器上  
 > 2.运行的项目演示在文件上传和下载部分是需要本地服务器一起使用才能有结果，否则没有结果(所以，需要在第 1 步当中部署到服务器并启动服务器，然后需要将Android中的代码服务器地址进行修改)  

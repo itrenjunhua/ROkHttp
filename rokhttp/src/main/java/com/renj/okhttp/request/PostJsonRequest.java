@@ -6,6 +6,7 @@ import com.renj.okhttp.ROkHttpRequest;
 import com.renj.okhttp.ROkHttpResponse;
 
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
@@ -24,6 +25,14 @@ import okhttp3.RequestBody;
 public class PostJsonRequest extends ROkHttpRequest<PostJsonRequest> {
     private final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
     private String mJson;
+
+    public PostJsonRequest() {
+        super();
+    }
+
+    public PostJsonRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
 
     public PostJsonRequest json(@NonNull String json) {
         this.mJson = json;

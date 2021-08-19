@@ -6,6 +6,7 @@ import com.renj.okhttp.ROkHttpRequest;
 import com.renj.okhttp.ROkHttpResponse;
 
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
@@ -24,6 +25,14 @@ import okhttp3.RequestBody;
 public class PostStringRequest extends ROkHttpRequest<PostStringRequest> {
     private final MediaType MEDIA_TYPE_TEXT = MediaType.parse("text/plain; charset=utf-8");
     private String mString;
+
+    public PostStringRequest() {
+        super();
+    }
+
+    public PostStringRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
 
     public PostStringRequest string(@NonNull String string) {
         this.mString = string;

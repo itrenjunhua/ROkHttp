@@ -4,6 +4,7 @@ package com.renj.okhttp.request;
 import com.renj.okhttp.ROkHttpResponse;
 
 import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 /**
@@ -19,6 +20,14 @@ import okhttp3.Request;
  * ======================================================================
  */
 public class PostKeyValueRequest extends KeyValueRequest<PostKeyValueRequest> {
+
+    public PostKeyValueRequest() {
+        super();
+    }
+
+    public PostKeyValueRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
 
     @Override
     protected <E> void postParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse) {

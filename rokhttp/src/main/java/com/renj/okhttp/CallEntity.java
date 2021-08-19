@@ -17,10 +17,10 @@ import okhttp3.Request;
  * ======================================================================
  */
 public class CallEntity {
-    public long callNo;
-    public Call call;
-    public Request request;
-    public Object tag;
+    private long callNo;
+    private Call call;
+    private Request request;
+    private Object tag;
 
     /**
      * 创建一个CallEntity实体
@@ -49,6 +49,22 @@ public class CallEntity {
             return true;
         }
         return false;
+    }
+
+    public long getCallNo() {
+        return callNo;
+    }
+
+    public Call getCall() {
+        return call;
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public Object getTag() {
+        return tag;
     }
 
     @Override

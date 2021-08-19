@@ -5,6 +5,7 @@ import com.renj.okhttp.ROkHttpResponse;
 
 import java.util.Set;
 
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 /**
@@ -20,6 +21,14 @@ import okhttp3.Request;
  * ======================================================================
  */
 public class GetRequest extends KeyValueRequest<GetRequest> {
+    public GetRequest() {
+        super();
+    }
+
+    public GetRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
+
     /**
      * 最终拼接参数
      *
@@ -28,9 +37,7 @@ public class GetRequest extends KeyValueRequest<GetRequest> {
      */
     @Override
     protected <E> void postParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse) {
-        if (mUrl.endsWith("?")) {
-            addParams();
-        } else {
+        if (!mUrl.endsWith("?")) {
             if (!mUrl.endsWith("&")) {
                 if (mUrl.contains("?")) {
                     mUrl = mUrl + "&";
@@ -38,8 +45,8 @@ public class GetRequest extends KeyValueRequest<GetRequest> {
                     mUrl = mUrl + "?";
                 }
             }
-            addParams();
         }
+        addParams();
     }
 
     private void addParams() {

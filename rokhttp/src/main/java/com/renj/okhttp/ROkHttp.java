@@ -3,6 +3,7 @@ package com.renj.okhttp;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.renj.okhttp.request.DownloadFileRequest;
 import com.renj.okhttp.request.GetRequest;
@@ -67,6 +68,56 @@ public class ROkHttp {
         ROkHttpManager.initROkHttp(context, okHttpClient);
     }
 
+    /* ------- 获取OkHttpClient.Builder对象,用于添加拦截器 -------- */
+
+    /**
+     * 获取一个clone的OkHttpClient.Builder对象,可用于特定接口添加拦截器
+     *
+     * @return {@link OkHttpClient.Builder}
+     */
+    public OkHttpClient.Builder getOkHttpClientBuilder() {
+        return ROkHttpManager.mOkHttpClient.newBuilder();
+    }
+
+    /* ----------------------- 日志管理 ----------------------- */
+
+    /**
+     * 设置是否显示日志
+     *
+     * @param showLog true：显示  false：不显示
+     */
+    public static void setShowLog(boolean showLog) {
+        RLog.setShowLog(showLog);
+    }
+
+    /**
+     * 设置显示日志的Tag
+     *
+     * @param logTag 日志的Tag，不能为null和""
+     */
+    public static void setLogTag(String logTag) {
+        if (!TextUtils.isEmpty(logTag))
+            RLog.setAppTAG(logTag);
+    }
+
+    /**
+     * 设置是否显示打印日志位置的全类名
+     *
+     * @param isFullClassName true：显示  false：不显示
+     */
+    public static void setFullClassName(boolean isFullClassName) {
+        RLog.setFullClassName(isFullClassName);
+    }
+
+    /**
+     * 设置日志显示级别
+     *
+     * @param level {@link android.util.Log#VERBOSE} 等
+     */
+    public static void setLogLevel(int level) {
+        RLog.setLogLevel(level);
+    }
+
     /* ----------------------- 获取请求方法 ----------------------- */
 
     /**
@@ -80,6 +131,17 @@ public class ROkHttp {
     }
 
     /**
+     * 获取GET方式请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return GetRequest 对象
+     */
+    @NonNull
+    public static GetRequest getRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.getRequest(okHttpClient);
+    }
+
+    /**
      * 获取POST方式提交键值对的形式请求
      *
      * @return PostKeyValueRequest 对象
@@ -87,6 +149,17 @@ public class ROkHttp {
     @NonNull
     public PostKeyValueRequest postKeyValueRequest() {
         return ROkHttpManager.postKeyValueRequest();
+    }
+
+    /**
+     * 获取POST方式提交键值对的形式请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return PostKeyValueRequest 对象
+     */
+    @NonNull
+    public PostKeyValueRequest postKeyValueRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.postKeyValueRequest(okHttpClient);
     }
 
     /**
@@ -100,6 +173,17 @@ public class ROkHttp {
     }
 
     /**
+     * 获取POST方式提交STRING数据的请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return PostStringRequest 对象
+     */
+    @NonNull
+    public PostStringRequest postStringRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.postStringRequest(okHttpClient);
+    }
+
+    /**
      * 获取POST方式提交JSON数据的请求
      *
      * @return PostJsonRequest 对象
@@ -107,6 +191,17 @@ public class ROkHttp {
     @NonNull
     public PostJsonRequest postJsonRequest() {
         return ROkHttpManager.postJsonRequest();
+    }
+
+    /**
+     * 获取POST方式提交JSON数据的请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return PostJsonRequest 对象
+     */
+    @NonNull
+    public PostJsonRequest postJsonRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.postJsonRequest(okHttpClient);
     }
 
     /**
@@ -130,6 +225,17 @@ public class ROkHttp {
     }
 
     /**
+     * 获取POST方式提交表单数据的请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return PostFormRequest 对象
+     */
+    @NonNull
+    public PostFormRequest postFormRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.postFormRequest(okHttpClient);
+    }
+
+    /**
      * 获取带进度的上传文件请求
      *
      * @return UploadFileRequest 对象
@@ -137,6 +243,17 @@ public class ROkHttp {
     @NonNull
     public UploadFileRequest upLoadFileRequest() {
         return ROkHttpManager.upLoadFileRequest();
+    }
+
+    /**
+     * 获取带进度的上传文件请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return UploadFileRequest 对象
+     */
+    @NonNull
+    public UploadFileRequest upLoadFileRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.upLoadFileRequest(okHttpClient);
     }
 
     /**
@@ -149,6 +266,19 @@ public class ROkHttp {
     @NonNull
     public DownloadFileRequest downloadFileRequest() {
         return ROkHttpManager.downloadFileRequest();
+    }
+
+    /**
+     * 获取带进度的下载文件请求<br/><br/>
+     * <b>提示：在调用 enqueue(ROkHttpResponse mROkHttpResponseHandler) 方法时所传的
+     * ROkHttpResponse 对象应为它的子类 DownLoadResponse(针对下载文件的Handler) 对象</b>
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return DownloadFileRequest 对象
+     */
+    @NonNull
+    public DownloadFileRequest downloadFileRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.downloadFileRequest(okHttpClient);
     }
 
     /* ----------------------- 管理请求方法 ----------------------- */

@@ -52,6 +52,14 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
      */
     private File mFileP;
 
+    public DownloadFileRequest() {
+        super();
+    }
+
+    public DownloadFileRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
+
     /**
      * 指定下载文件保存目录<br/><br/>
      * <b>注意：<br/>
@@ -130,7 +138,7 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
     /**
      * 下载文件不需要拼接参数，这里执行对目标目录进行检查
      *
-     * @param builder                  Request.Builder对象
+     * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
      * @param <E>
      */
