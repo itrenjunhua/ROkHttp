@@ -188,6 +188,17 @@ import okhttp3.OkHttpClient;
     }
 
     /**
+     * 获取POST方式提交表单数据的请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return PostFormRequest 对象
+     */
+    @NonNull
+    static PostFormRequest postFormRequest(OkHttpClient okHttpClient) {
+        return new PostFormRequest(okHttpClient);
+    }
+
+    /**
      * 获取POST方式提交byte数组的请求
      *
      * @return PostByteArrayRequest 对象
@@ -198,14 +209,14 @@ import okhttp3.OkHttpClient;
     }
 
     /**
-     * 获取POST方式提交表单数据的请求
+     * 获取POST方式提交byte数组的请求
      *
      * @param okHttpClient 自定义的 OkHttpClient
-     * @return PostFormRequest 对象
+     * @return PostByteArrayRequest 对象
      */
     @NonNull
-    static PostFormRequest postFormRequest(OkHttpClient okHttpClient) {
-        return new PostFormRequest(okHttpClient);
+    static PostByteArrayRequest postByteArrayRequest(OkHttpClient okHttpClient) {
+        return new PostByteArrayRequest(okHttpClient);
     }
 
     /**

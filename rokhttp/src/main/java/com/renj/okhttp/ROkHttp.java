@@ -79,45 +79,6 @@ public class ROkHttp {
         return ROkHttpManager.mOkHttpClient.newBuilder();
     }
 
-    /* ----------------------- 日志管理 ----------------------- */
-
-    /**
-     * 设置是否显示日志
-     *
-     * @param showLog true：显示  false：不显示
-     */
-    public static void setShowLog(boolean showLog) {
-        RLog.setShowLog(showLog);
-    }
-
-    /**
-     * 设置显示日志的Tag
-     *
-     * @param logTag 日志的Tag，不能为null和""
-     */
-    public static void setLogTag(String logTag) {
-        if (!TextUtils.isEmpty(logTag))
-            RLog.setAppTAG(logTag);
-    }
-
-    /**
-     * 设置是否显示打印日志位置的全类名
-     *
-     * @param isFullClassName true：显示  false：不显示
-     */
-    public static void setFullClassName(boolean isFullClassName) {
-        RLog.setFullClassName(isFullClassName);
-    }
-
-    /**
-     * 设置日志显示级别
-     *
-     * @param level {@link android.util.Log#VERBOSE} 等
-     */
-    public static void setLogLevel(int level) {
-        RLog.setLogLevel(level);
-    }
-
     /* ----------------------- 获取请求方法 ----------------------- */
 
     /**
@@ -215,6 +176,17 @@ public class ROkHttp {
     }
 
     /**
+     * 获取POST方式提交表单数据的请求
+     *
+     * @param okHttpClient 自定义的 OkHttpClient
+     * @return PostFormRequest 对象
+     */
+    @NonNull
+    public PostFormRequest postFormRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.postFormRequest(okHttpClient);
+    }
+
+    /**
      * 获取POST方式提交byte数组的请求
      *
      * @return PostByteArrayRequest 对象
@@ -225,14 +197,14 @@ public class ROkHttp {
     }
 
     /**
-     * 获取POST方式提交表单数据的请求
+     * 获取POST方式提交byte数组的请求
      *
      * @param okHttpClient 自定义的 OkHttpClient
-     * @return PostFormRequest 对象
+     * @return PostByteArrayRequest 对象
      */
     @NonNull
-    public PostFormRequest postFormRequest(OkHttpClient okHttpClient) {
-        return ROkHttpManager.postFormRequest(okHttpClient);
+    public PostByteArrayRequest postByteArrayRequest(OkHttpClient okHttpClient) {
+        return ROkHttpManager.postByteArrayRequest(okHttpClient);
     }
 
     /**
@@ -391,5 +363,44 @@ public class ROkHttp {
      */
     public void cancelAll() {
         ROkHttpRequestManager.cancelAll();
+    }
+
+    /* ----------------------- 日志管理 ----------------------- */
+
+    /**
+     * 设置是否显示日志
+     *
+     * @param showLog true：显示  false：不显示
+     */
+    public static void setShowLog(boolean showLog) {
+        RLog.setShowLog(showLog);
+    }
+
+    /**
+     * 设置显示日志的Tag
+     *
+     * @param logTag 日志的Tag，不能为null和""
+     */
+    public static void setLogTag(String logTag) {
+        if (!TextUtils.isEmpty(logTag))
+            RLog.setAppTAG(logTag);
+    }
+
+    /**
+     * 设置是否显示打印日志位置的全类名
+     *
+     * @param isFullClassName true：显示  false：不显示
+     */
+    public static void setFullClassName(boolean isFullClassName) {
+        RLog.setFullClassName(isFullClassName);
+    }
+
+    /**
+     * 设置日志显示级别
+     *
+     * @param level {@link android.util.Log#VERBOSE} 等
+     */
+    public static void setLogLevel(int level) {
+        RLog.setLogLevel(level);
     }
 }

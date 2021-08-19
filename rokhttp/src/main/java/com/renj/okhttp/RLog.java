@@ -15,7 +15,7 @@ import android.util.Log;
  * ======================================================================
  */
 public class RLog {
-    private static String TAG = "ROkHttp Log";
+    private static String TAG = "ROkHttpLog";
     private static boolean showLog = BuildConfig.DEBUG;
     private static boolean IS_FULL_CLASSNAME;
     private static int LOG_LEVEL = Log.VERBOSE;

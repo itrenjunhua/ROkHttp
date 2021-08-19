@@ -13,6 +13,7 @@ import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
@@ -32,6 +33,14 @@ import okhttp3.RequestBody;
 public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
     private Map<String, String> mParams;
     private List<byte[]> bytesList;
+
+    public PostByteArrayRequest() {
+        super();
+    }
+
+    public PostByteArrayRequest(OkHttpClient okHttpClient) {
+        super(okHttpClient);
+    }
 
     /**
      * 添加一个键值对参数
