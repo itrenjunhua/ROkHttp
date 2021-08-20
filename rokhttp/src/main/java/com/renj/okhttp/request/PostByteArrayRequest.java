@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.renj.okhttp.ROkHttpRequest;
 import com.renj.okhttp.ROkHttpResponse;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -16,6 +17,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okio.BufferedSink;
 
 /**
  * ======================================================================
@@ -121,13 +123,21 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
      */
     @Override
     protected <E> void putParams(Request.Builder builder, final ROkHttpResponse<E> mROkHttpResponse) {
+        // 只单传一个byte数组时不分块
+        if ((mParams == null || mParams.size() <= 0)
+                && (this.bytesList != null && this.bytesList.size() == 1)) {
+            builder.post(RequestBody.create(MediaType.parse("application/octet-stream"), this.bytesList.get(0)));
+            return;
+        }
+
         MultipartBody.Builder multipartBodyBuilder = new MultipartBody.Builder();
         appendParams(multipartBodyBuilder); // 增加普通参数
 
         // 增加byte数组参数
-        if (this.bytesList == null || this.bytesList.isEmpty()) return;
-        for (byte[] bytes : this.bytesList) {
-            multipartBodyBuilder.addPart(RequestBody.create(MediaType.parse("application/octet-stream"), bytes));
+        if (this.bytesList != null && this.bytesList.size() > 0) {
+            for (byte[] bytes : this.bytesList) {
+                multipartBodyBuilder.addPart(RequestBody.create(MediaType.parse("application/octet-stream"), bytes));
+            }
         }
         builder.post(multipartBodyBuilder.build());
     }
