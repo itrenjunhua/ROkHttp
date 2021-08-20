@@ -129,6 +129,7 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
         for (byte[] bytes : this.bytesList) {
             multipartBodyBuilder.addPart(RequestBody.create(MediaType.parse("application/octet-stream"), bytes));
         }
+        builder.post(multipartBodyBuilder.build());
     }
 
     /**
