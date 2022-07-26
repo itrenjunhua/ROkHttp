@@ -30,7 +30,7 @@ public class UploadRequestBody extends RequestBody {
     /**
      * 实际待包装的RequestBody
      */
-    private RequestBody mRequestBody;
+    private final RequestBody mRequestBody;
     /**
      * 包装完成的BufferedSink
      */
@@ -38,7 +38,7 @@ public class UploadRequestBody extends RequestBody {
     /***
      * 进度回调接口
      */
-    private UploadFileRequest.UploadProgressListener mUploadProgressListener;
+    private final UploadFileRequest.UploadProgressListener mUploadProgressListener;
 
     public UploadRequestBody(RequestBody requestBody, UploadFileRequest.UploadProgressListener uploadProgressListener) {
         this.mRequestBody = requestBody;

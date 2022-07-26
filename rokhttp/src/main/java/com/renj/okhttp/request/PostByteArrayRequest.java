@@ -49,7 +49,7 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
      *
      * @param key   键名
      * @param value 值
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public PostByteArrayRequest param(@NonNull String key, @NonNull String value) {
         addParam(key, value);
@@ -61,10 +61,10 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
      *
      * @param key   键名
      * @param value 值
-     * @return
+     * @return 本身对象，方便链式调用
      */
     private PostByteArrayRequest addParam(@NonNull String key, @NonNull String value) {
-        if (this.mParams == null) this.mParams = new HashMap<String, String>();
+        if (this.mParams == null) this.mParams = new HashMap<>();
         mParams.put(key, value);
         return this;
     }
@@ -73,11 +73,11 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
      * 增加一个参数集合
      *
      * @param params 参数集合
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public PostByteArrayRequest params(Map<String, String> params) {
         if (params != null && !params.isEmpty()) {
-            if (this.mParams == null) this.mParams = new LinkedHashMap<String, String>();
+            if (this.mParams == null) this.mParams = new LinkedHashMap<>();
             this.mParams.putAll(params);
         }
         return this;
@@ -87,7 +87,7 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
      * 添加需要上传的byte[]数据
      *
      * @param bytes 需要上传的byte[]数据
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public PostByteArrayRequest bytes(byte[] bytes) {
         if (bytes == null || bytes.length <= 0) return this;
@@ -103,7 +103,7 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
      * 添加需要上传的byte[]列表
      *
      * @param bytes 需要上传的byte[]列表
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public PostByteArrayRequest bytes(List<byte[]> bytes) {
         if (bytes != null && bytes.size() > 0) {
@@ -119,7 +119,7 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
      *
      * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
-     * @param <E>
+     * @param <E>              泛型
      */
     @Override
     protected <E> void putParams(Request.Builder builder, final ROkHttpResponse<E> mROkHttpResponse) {
@@ -144,8 +144,6 @@ public class PostByteArrayRequest extends ROkHttpRequest<PostByteArrayRequest> {
 
     /**
      * 增加普通参数
-     *
-     * @param multipartBodyBuilder
      */
     private void appendParams(MultipartBody.Builder multipartBodyBuilder) {
         if (this.mParams == null || this.mParams.isEmpty()) return;

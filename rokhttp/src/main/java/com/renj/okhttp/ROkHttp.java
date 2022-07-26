@@ -14,8 +14,6 @@ import com.renj.okhttp.request.PostKeyValueRequest;
 import com.renj.okhttp.request.PostStringRequest;
 import com.renj.okhttp.request.UploadFileRequest;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,7 +50,6 @@ public class ROkHttp {
      *
      * @param context 上下文
      */
-    @org.jetbrains.annotations.Contract("null -> fail")
     public static void initROkHttp(@NonNull Context context) {
         ROkHttpManager.initROkHttp(context);
     }
@@ -63,7 +60,6 @@ public class ROkHttp {
      * @param context      上下文
      * @param okHttpClient 自定义的OkHttpClient
      */
-    @org.jetbrains.annotations.Contract("null, _ -> fail")
     public static void initROkHttp(@NonNull Context context, @Nullable OkHttpClient okHttpClient) {
         ROkHttpManager.initROkHttp(context, okHttpClient);
     }
@@ -260,7 +256,6 @@ public class ROkHttp {
      *
      * @return 所有加入到请求管理中并未取消的请求集合
      */
-    @Contract(pure = true)
     public LinkedList<CallEntity> requestQueue() {
         return ROkHttpRequestManager.requestQueue();
     }
@@ -287,7 +282,6 @@ public class ROkHttp {
      * @param callNo 请求编号
      * @return 返回一个 CallEntity 或者 null
      */
-    @org.jetbrains.annotations.Contract(pure = true)
     public CallEntity getCallEntity(long callNo) {
         return ROkHttpRequestManager.getCallEntity(callNo);
     }
@@ -298,7 +292,6 @@ public class ROkHttp {
      * @param call Call对象
      * @return 返回一个 CallEntity 或者 null
      */
-    @org.jetbrains.annotations.Contract("null -> null")
     public CallEntity getCallEntity(Call call) {
         return ROkHttpRequestManager.getCallEntity(call);
     }

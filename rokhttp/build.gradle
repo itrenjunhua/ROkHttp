@@ -7,8 +7,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdk
         targetSdkVersion rootProject.ext.android.targetSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -28,5 +26,4 @@ dependencies {
 
     api rootProject.ext.dependencies["okhttp"]
     api rootProject.ext.dependencies["gson"]
-    implementation rootProject.ext.dependencies["jetbrainsAnnotations"]
 }

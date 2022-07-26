@@ -24,7 +24,7 @@ import okhttp3.Request;
  * <p/>
  * ======================================================================
  */
-public abstract class KeyValueRequest<T extends KeyValueRequest> extends ROkHttpRequest<T> {
+public abstract class KeyValueRequest<T extends KeyValueRequest<?>> extends ROkHttpRequest<T> {
     protected Map<String, String> mParams;
 
     public KeyValueRequest() {
@@ -40,7 +40,7 @@ public abstract class KeyValueRequest<T extends KeyValueRequest> extends ROkHttp
      *
      * @param key   键名
      * @param value 值
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public T param(@NonNull String key, @NonNull String value) {
         addParam(key, value);
@@ -52,10 +52,10 @@ public abstract class KeyValueRequest<T extends KeyValueRequest> extends ROkHttp
      *
      * @param key   键名
      * @param value 值
-     * @return
+     * @return 本身对象，方便链式调用
      */
     private T addParam(@NonNull String key, @NonNull String value) {
-        if (this.mParams == null) this.mParams = new HashMap<String, String>();
+        if (this.mParams == null) this.mParams = new HashMap<>();
         mParams.put(key, value);
         return (T) this;
     }
@@ -64,11 +64,11 @@ public abstract class KeyValueRequest<T extends KeyValueRequest> extends ROkHttp
      * 增加一个参数集合
      *
      * @param params 参数集合
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public T params(Map<String, String> params) {
         if (params != null && !params.isEmpty()) {
-            if (this.mParams == null) this.mParams = new LinkedHashMap<String, String>();
+            if (this.mParams == null) this.mParams = new LinkedHashMap<>();
             this.mParams.putAll(params);
         }
         return (T) this;
@@ -77,7 +77,7 @@ public abstract class KeyValueRequest<T extends KeyValueRequest> extends ROkHttp
     /**
      * 实现父类方法，向请求中添加不同类型参数
      *
-     * @param builder                  Request.Builder对象
+     * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
      */
     @Override
@@ -90,8 +90,8 @@ public abstract class KeyValueRequest<T extends KeyValueRequest> extends ROkHttp
      * 抽象方法，拼接参数<br/>
      * 即使参数能以键值对的形式表示，但提交参数的方式不同，进行不同的拼接，所以由具体子类实现
      *
-     * @param builder                  Request.Builder对象
-     * @param mROkHttpResponse
+     * @param builder          Request.Builder对象
+     * @param mROkHttpResponse ROkHttpResponse 对象
      */
     protected abstract <E> void postParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse);
 }

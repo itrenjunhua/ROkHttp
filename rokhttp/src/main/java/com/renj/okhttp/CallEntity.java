@@ -17,18 +17,13 @@ import okhttp3.Request;
  * ======================================================================
  */
 public class CallEntity {
-    private long callNo;
-    private Call call;
-    private Request request;
-    private Object tag;
+    private final long callNo;
+    private final Call call;
+    private final Request request;
+    private final Object tag;
 
     /**
      * 创建一个CallEntity实体
-     *
-     * @param callNo
-     * @param call
-     * @param request
-     * @param tag
      */
     CallEntity(long callNo, Call call, Request request, Object tag) {
         this.callNo = callNo;

@@ -46,7 +46,7 @@ public abstract class DownLoadResponse extends ROkHttpResponse<String> {
     /**
      * 保存文件
      *
-     * @param response
+     * @param response 响应对象
      * @return 是否保存成功
      */
     private boolean saveFile(Response response) throws ROkHttpException {
@@ -80,12 +80,6 @@ public abstract class DownLoadResponse extends ROkHttpResponse<String> {
 
     /**
      * 检查文件路径
-     *
-     * @param mFilePath
-     * @param mFileP
-     * @param mFileDir
-     * @param mFileD
-     * @param mFileName
      */
     public void checkFilePath(String mFilePath, File mFileP, String mFileDir, File mFileD, String mFileName) throws ROkHttpException {
         File file;
@@ -131,7 +125,7 @@ public abstract class DownLoadResponse extends ROkHttpResponse<String> {
     /**
      * 当指定下载文件保存目录发生异常时回调，UI线程
      *
-     * @param rOkHttpException
+     * @param rOkHttpException ROkHttpException对象
      */
     public void onFilePathException(ROkHttpException rOkHttpException) {
         RLog.e(rOkHttpException + "");

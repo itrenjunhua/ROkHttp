@@ -55,7 +55,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      *
      * @param key   键名
      * @param value 值
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public UploadFileRequest param(@NonNull String key, @NonNull String value) {
         addParam(key, value);
@@ -67,10 +67,10 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      *
      * @param key   键名
      * @param value 值
-     * @return
+     * @return 本身对象，方便链式调用
      */
     private UploadFileRequest addParam(@NonNull String key, @NonNull String value) {
-        if (this.mParams == null) this.mParams = new HashMap<String, String>();
+        if (this.mParams == null) this.mParams = new HashMap<>();
         mParams.put(key, value);
         return this;
     }
@@ -79,11 +79,11 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * 增加一个参数集合
      *
      * @param params 参数集合
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public UploadFileRequest params(Map<String, String> params) {
         if (params != null && !params.isEmpty()) {
-            if (this.mParams == null) this.mParams = new LinkedHashMap<String, String>();
+            if (this.mParams == null) this.mParams = new LinkedHashMap<>();
             this.mParams.putAll(params);
         }
         return this;
@@ -94,7 +94,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      *
      * @param name 上传文件的参数名
      * @param file 上传文件对象
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public UploadFileRequest file(@NonNull String name, @NonNull File file) {
         addFile(name, file);
@@ -106,7 +106,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      *
      * @param name 上传文件的参数名
      * @param file 上传文件对象
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public UploadFileRequest addFile(@NonNull String name, @NonNull File file) {
         if (this.mFiles == null) this.mFiles = new LinkedList<Map<String, File>>();
@@ -120,11 +120,11 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * 新增上传文件集合，Map的键名为name的值，filename使用file.getName()获取到的文件名
      *
      * @param files 上传文件集合
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public UploadFileRequest files(List<Map<String, File>> files) {
         if (files != null && !files.isEmpty()) {
-            if (this.mFiles == null) this.mFiles = new LinkedList<Map<String, File>>();
+            if (this.mFiles == null) this.mFiles = new LinkedList<>();
             this.mFiles.addAll(files);
         }
         return this;
@@ -136,7 +136,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * @param name         上传文件的参数名
      * @param fileName     上传文件到到服务器的名称
      * @param contentBytes 上传文件的字节数组
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public UploadFileRequest file(@NonNull String name, @NonNull String fileName, @NonNull byte[] contentBytes) {
         addFile(name, fileName, contentBytes);
@@ -149,10 +149,10 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * @param name         上传文件的参数名
      * @param fileName     上传文件到到服务器的名称
      * @param contentBytes 上传文件的字节数组
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public UploadFileRequest addFile(@NonNull String name, @NonNull String fileName, @NonNull byte[] contentBytes) {
-        if (this.mTempFiles == null) this.mTempFiles = new LinkedList<TempFile>();
+        if (this.mTempFiles == null) this.mTempFiles = new LinkedList<>();
         TempFile tempFile = new TempFile();
         tempFile.name = name;
         tempFile.fileName = fileName;
@@ -167,7 +167,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      *
      * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
-     * @param <E>
+     * @param <E>              泛型
      */
     @Override
     protected <E> void putParams(Request.Builder builder, final ROkHttpResponse<E> mROkHttpResponse) {
@@ -197,8 +197,6 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
 
     /**
      * 增加文件参数
-     *
-     * @param multipartBodyBuilder
      */
     private void appendTempFiles(MultipartBody.Builder multipartBodyBuilder) {
         if (this.mTempFiles == null || this.mTempFiles.isEmpty()) return;
@@ -210,8 +208,6 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
 
     /**
      * 增加文件参数
-     *
-     * @param multipartBodyBuilder
      */
     private void appendFiles(MultipartBody.Builder multipartBodyBuilder) {
         if (this.mFiles == null || this.mFiles.isEmpty()) return;
@@ -227,8 +223,6 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
 
     /**
      * 增加普通参数
-     *
-     * @param multipartBodyBuilder
      */
     private void appendParams(MultipartBody.Builder multipartBodyBuilder) {
         if (this.mParams == null || this.mParams.isEmpty()) return;
@@ -241,7 +235,6 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * 获取文件名
      *
      * @param file 问价对象
-     * @return
      */
     private String getFileName(@NonNull File file) {
         return file.getName();
@@ -249,9 +242,6 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
 
     /**
      * 根据文件名获取文件的 MIME 类型
-     *
-     * @param fileName
-     * @return
      */
     private String getFileMime(String fileName) {
         FileNameMap fileNameMap = URLConnection.getFileNameMap();
@@ -274,24 +264,15 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
 
     /**
      * 判断Map是否为 null 或者 元素为空
-     *
-     * @param map
-     * @return
      */
-    @org.jetbrains.annotations.Contract(value = "null -> true", pure = true)
-    private boolean isEmptyMap(Map map) {
-        if (null == map || map.isEmpty()) return true;
-        return false;
+    private boolean isEmptyMap(Map<?, ?> map) {
+        return null == map || map.isEmpty();
     }
 
     /**
      * 判断List是否为 null 或者 元素为空
-     *
-     * @param list
-     * @return
      */
-    @org.jetbrains.annotations.Contract(value = "null -> true", pure = true)
-    private boolean isEmptyList(List list) {
+    private boolean isEmptyList(List<?> list) {
         if (null == list || list.isEmpty()) return true;
         return false;
     }

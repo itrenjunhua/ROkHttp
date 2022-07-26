@@ -30,7 +30,7 @@ public class DownloadResponseBody extends ResponseBody {
     /**
      * 实际待包装的ResponseBody
      */
-    private ResponseBody mResponseBody;
+    private final ResponseBody mResponseBody;
     /**
      * 包装完成的BufferedSource
      */
@@ -38,7 +38,7 @@ public class DownloadResponseBody extends ResponseBody {
     /***
      * 进度回调接口
      */
-    private DownloadFileRequest.DownloadProgressListener mDownloadProgressListener;
+    private final DownloadFileRequest.DownloadProgressListener mDownloadProgressListener;
 
     public DownloadResponseBody(ResponseBody responseBody,DownloadFileRequest.DownloadProgressListener downloadProgressListener) {
         this.mResponseBody = responseBody;
@@ -88,7 +88,6 @@ public class DownloadResponseBody extends ResponseBody {
                 // 增加当前读取的字节数，如果读取完成了byteRead会返回-1
                 if (byteRead != -1)
                     bytesRead += byteRead;
-                else bytesRead += 0;
                 // 回调
                 mDownloadProgressListener.onProgress(bytesRead, contentLength, byteRead == -1);
                 return byteRead;

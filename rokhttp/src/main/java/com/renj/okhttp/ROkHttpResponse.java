@@ -75,17 +75,9 @@ public abstract class ROkHttpResponse<T> {
      * <b>特别注意：</b><br/>
      * <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      * 此方法的执行线程并非UI线程，onSucceed(Call call, T result)方法的执行线程为UI线程</b>
-     *
-     * @param call
-     * @param result
      */
     protected void onParseSucceed(final Call call, final T result) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                onSucceed(call, result);
-            }
-        });
+        mHandler.post(() -> onSucceed(call, result));
     }
 
     /**
@@ -93,17 +85,9 @@ public abstract class ROkHttpResponse<T> {
      * <b>特别注意：</b><br/>
      * <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      * 此方法的执行线程并非UI线程，onError(Call call, ROkHttpException error)方法的执行线程为UI线程</b>
-     *
-     * @param call
-     * @param error
      */
     protected void onOkHttpError(final Call call, final ROkHttpException error) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                onError(call, error);
-            }
-        });
+        mHandler.post(() -> onError(call, error));
     }
 
     /**

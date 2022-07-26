@@ -27,7 +27,7 @@ import okhttp3.Response;
  * <p/>
  * ======================================================================
  */
-public abstract class ROkHttpRequest<T extends ROkHttpRequest> {
+public abstract class ROkHttpRequest<T extends ROkHttpRequest<?>> {
     protected String mUrl;
     protected Object mTag;
     protected CacheControl mCacheControl;

@@ -69,7 +69,7 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
      * 以fileDir(@NonNull File fileD)设置的值为准</b>
      *
      * @param fileDir 文件保存目录
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public DownloadFileRequest fileDir(@NonNull String fileDir) {
         this.mFileDir = fileDir;
@@ -85,7 +85,7 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
      * 以fileDir(@NonNull File fileD)设置的值为准</b>
      *
      * @param fileD 文件保存目录
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public DownloadFileRequest fileDir(@NonNull File fileD) {
         this.mFileD = fileD;
@@ -96,7 +96,7 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
      * 设置保存的文件名
      *
      * @param fileName 保存的文件名
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public DownloadFileRequest fileName(@NonNull String fileName) {
         this.mFileName = fileName;
@@ -112,7 +112,7 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
      * 以filePath(@NonNull File fileP)设置的值为准</b>
      *
      * @param filePath 文件路径
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public DownloadFileRequest filePath(@NonNull String filePath) {
         this.mFilePath = filePath;
@@ -128,7 +128,7 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
      * 以filePath(@NonNull File fileP)设置的值为准</b>
      *
      * @param fileP 文件路径
-     * @return
+     * @return 本身对象，方便链式调用
      */
     public DownloadFileRequest filePath(@NonNull File fileP) {
         this.mFileP = fileP;
@@ -140,7 +140,7 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
      *
      * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
-     * @param <E>
+     * @param <E>              泛型
      */
     @Override
     protected <E> void putParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse) {
@@ -160,31 +160,22 @@ public class DownloadFileRequest extends ROkHttpRequest<DownloadFileRequest> {
     /**
      * 从原 OkHttpClient 构建一个带拦截器的 OkHttpClient
      *
-     * @param mROkHttpResponse
-     * @param <E>
-     * @return
+     * @param mROkHttpResponse 原OkHttpClient
+     * @param <E>              泛型
+     * @return 本身对象，方便链式调用
      */
     @Override
     protected <E> OkHttpClient getOkHttpClient(final ROkHttpResponse<E> mROkHttpResponse) {
         // 克隆，增加拦截器
-        return mOkHttpClient.newBuilder().addNetworkInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                // 拦截
-                Response proceedResponse = chain.proceed(chain.request());
-                // 包装响应体并返回
-                return proceedResponse.newBuilder().body(new DownloadResponseBody(proceedResponse.body(), new DownloadProgressListener() {
-                    @Override
-                    public void onProgress(final long completeLength, final long totalLength, final boolean isFinish) {
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                mROkHttpResponse.onProgress(completeLength, totalLength, isFinish);
-                            }
-                        });
-                    }
-                })).build();
-            }
+        return mOkHttpClient.newBuilder().addNetworkInterceptor(chain -> {
+            // 拦截
+            Response proceedResponse = chain.proceed(chain.request());
+            // 包装响应体并返回
+            return proceedResponse.newBuilder().body(new DownloadResponseBody(proceedResponse.body(),
+                            (completeLength, totalLength, isFinish) -> mHandler.post(
+                                    () -> mROkHttpResponse.onProgress(completeLength, totalLength, isFinish))
+                    )
+            ).build();
         }).build();
     }
 

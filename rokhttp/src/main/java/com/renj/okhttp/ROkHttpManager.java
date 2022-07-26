@@ -63,7 +63,6 @@ import okhttp3.OkHttpClient;
      *
      * @param context 上下文
      */
-    @org.jetbrains.annotations.Contract("null -> fail")
     static void initROkHttp(@NonNull Context context) {
         initROkHttp(context, null);
     }
@@ -74,7 +73,6 @@ import okhttp3.OkHttpClient;
      * @param context      上下文
      * @param okHttpClient 自定义的OkHttpClient
      */
-    @org.jetbrains.annotations.Contract("null, _ -> fail")
     static void initROkHttp(@NonNull Context context, @Nullable OkHttpClient okHttpClient) {
         if (context == null)
             throw new NullPointerException("初始化 ROkHttpManager 失败：Context 不能为 null 。");

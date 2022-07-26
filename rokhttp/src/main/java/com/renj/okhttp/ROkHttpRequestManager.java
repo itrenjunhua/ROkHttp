@@ -28,10 +28,6 @@ import okhttp3.Request;
 
     /**
      * 将一个请求添加到请求的缓存中
-     *
-     * @param call
-     * @param request
-     * @param tag
      */
     static void putRequest(Call call, Request request, Object tag) {
         synchronized (ROkHttpRequestManager.class) {
@@ -43,8 +39,6 @@ import okhttp3.Request;
 
     /**
      * 将一个CallEntity实体添加到请求集合中
-     *
-     * @param callEntity
      */
     private static void putRequest(CallEntity callEntity) {
         ROkHttpManager.mAllCall.add(callEntity);
@@ -74,10 +68,8 @@ import okhttp3.Request;
      * 根据请求编号获取一个CallEntity实体
      *
      * @param callNo 请求编号
-     * @return
      */
     @Nullable
-    @org.jetbrains.annotations.Contract(pure = true)
     static CallEntity getCallEntity(long callNo) {
         if (callNo <= 0) return null;
         for (CallEntity callEntity : ROkHttpManager.mAllCall) {
@@ -90,10 +82,8 @@ import okhttp3.Request;
      * 根据Call对象获取一个CallEntity实体
      *
      * @param call Call对象
-     * @return
      */
     @Nullable
-    @org.jetbrains.annotations.Contract("null -> null")
     static CallEntity getCallEntity(Call call) {
         if (null == call) return null;
         for (CallEntity callEntity : ROkHttpManager.mAllCall) {
@@ -106,7 +96,6 @@ import okhttp3.Request;
      * 根据Request对象的Tag获取一个CallEntity实体集合(相同的Tag)
      *
      * @param tag Request对象的Tag
-     * @return
      */
     static List<CallEntity> getCallEntities(Object tag) {
         List<CallEntity> callEntities = new ArrayList<CallEntity>();
@@ -199,15 +188,12 @@ import okhttp3.Request;
      *
      * @return 所有加入到请求管理中并未取消的请求集合
      */
-    @org.jetbrains.annotations.Contract(pure = true)
     static LinkedList<CallEntity> requestQueue() {
         return ROkHttpManager.mAllCall;
     }
 
     /**
      * 取消请求方法
-     *
-     * @param callEntity
      */
     private static void cancelCall(CallEntity callEntity) {
         if (callEntity.cancel()) ROkHttpManager.mAllCall.remove(callEntity);
