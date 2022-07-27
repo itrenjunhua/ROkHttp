@@ -1,5 +1,6 @@
 package com.renj.okhttp;
 
+import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -50,7 +51,7 @@ public class ROkHttp {
      *
      * @param context 上下文
      */
-    public static void initROkHttp(@NonNull Context context) {
+    public static void initROkHttp(@NonNull Application context) {
         ROkHttpManager.initROkHttp(context);
     }
 
@@ -60,7 +61,7 @@ public class ROkHttp {
      * @param context      上下文
      * @param okHttpClient 自定义的OkHttpClient
      */
-    public static void initROkHttp(@NonNull Context context, @Nullable OkHttpClient okHttpClient) {
+    public static void initROkHttp(@NonNull Application context, @Nullable OkHttpClient okHttpClient) {
         ROkHttpManager.initROkHttp(context, okHttpClient);
     }
 

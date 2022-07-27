@@ -10,32 +10,18 @@ ext {
             versionName  : "1.0"
     ]
 
-    def dependVersion = [
-            androidSupportV7        : "27.1.1",
-            androidSupportConstraint: "1.0.2",
-            junitSupport            : "4.12",
-            supportTestRunner       : "1.0.1",
-            supportTestEspresso     : "3.0.1",
-
-            jetbrainsAnnotations    : "13.0",
-            okhttp                  : "3.6.0",
-            gson                    : "2.2.4",
-    ]
-
     dependencies = [
             // support
-            "androidSupportV7"        : "com.android.support:appcompat-v7:${dependVersion.androidSupportV7}",
-            "androidSupportConstraint": "com.android.support.constraint:constraint-layout:${dependVersion.androidSupportConstraint}",
+            "androidSupportV7"        : "com.android.support:appcompat-v7:27.1.1",
+            "androidSupportConstraint": "com.android.support.constraint:constraint-layout:1.0.2",
             // test
-            "junitSupport"            : "junit:junit:${dependVersion.junitSupport}",
-            "supportTestRunner"       : "com.android.support.test:runner:${dependVersion.supportTestRunner}",
-            "supportTestEspresso"     : "com.android.support.test.espresso:espresso-core:${dependVersion.supportTestEspresso}",
+            "junitSupport"            : "junit:junit:4.12",
+            "supportTestRunner"       : "com.android.support.test:runner:1.0.1",
+            "supportTestEspresso"     : "com.android.support.test.espresso:espresso-core:3.0.1",
             // okHttp
-            "okhttp"                  : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp}",
+            "okhttp"                  : "com.squareup.okhttp3:okhttp:4.10.0",
             // json
-            "gson"                    : "com.google.code.gson:gson:${dependVersion.gson}",
-            // jetbrains 注解
-            "jetbrainsAnnotations"    : "org.jetbrains:annotations:${dependVersion.jetbrainsAnnotations}",
+            "gson"                    : "com.google.code.gson:gson:2.9.0",
 
     ]
 }

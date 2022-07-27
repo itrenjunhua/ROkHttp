@@ -1,6 +1,6 @@
 package com.renj.okhttp;
 
-import android.content.Context;
+import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -16,6 +16,7 @@ import com.renj.okhttp.request.PostStringRequest;
 import com.renj.okhttp.request.UploadFileRequest;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 
@@ -40,11 +41,11 @@ import okhttp3.OkHttpClient;
     /**
      * 保存所有CallEntity实体的集合
      */
-    final static LinkedList<CallEntity> mAllCall = new LinkedList<CallEntity>();
+    final static LinkedList<CallEntity> mAllCall = new LinkedList<>();
     /**
      * 全局OkHttpClient对象
      */
-    static OkHttpClient mOkHttpClient;
+    static volatile OkHttpClient mOkHttpClient;
     /**
      * Call的编号
      */
@@ -53,7 +54,7 @@ import okhttp3.OkHttpClient;
      * 缓存的请求数，默认50个
      */
     static int mRequestCount = 50;
-    static Context mContext;
+    static Application mContext;
 
     private ROkHttpManager() {
     }
@@ -63,7 +64,7 @@ import okhttp3.OkHttpClient;
      *
      * @param context 上下文
      */
-    static void initROkHttp(@NonNull Context context) {
+    static void initROkHttp(@NonNull Application context) {
         initROkHttp(context, null);
     }
 
@@ -73,8 +74,8 @@ import okhttp3.OkHttpClient;
      * @param context      上下文
      * @param okHttpClient 自定义的OkHttpClient
      */
-    static void initROkHttp(@NonNull Context context, @Nullable OkHttpClient okHttpClient) {
-        if (context == null)
+    static void initROkHttp(@NonNull Application context, @Nullable OkHttpClient okHttpClient) {
+        if (Objects.isNull(context))
             throw new NullPointerException("初始化 ROkHttpManager 失败：Context 不能为 null 。");
         if (ROkHttpManager.mOkHttpClient == null) {
             synchronized (ROkHttp.class) {
