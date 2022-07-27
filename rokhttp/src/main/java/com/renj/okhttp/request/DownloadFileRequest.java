@@ -9,9 +9,7 @@ import com.renj.okhttp.body.DownloadResponseBody;
 import com.renj.okhttp.response.DownLoadResponse;
 
 import java.io.File;
-import java.io.IOException;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

@@ -32,7 +32,7 @@ public class GetRequest extends KeyValueRequest<GetRequest> {
     /**
      * 最终拼接参数
      *
-     * @param builder                  Request.Builder对象
+     * @param builder          Request.Builder对象
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
      */
     @Override
@@ -52,7 +52,7 @@ public class GetRequest extends KeyValueRequest<GetRequest> {
     private void addParams() {
         Set<String> keySet = mParams.keySet();
         for (String key : keySet) {
-            mUrl = mUrl + key + "=" + mParams.get(key) + "&";
+            mUrl = String.format("%s%s=%s&", mUrl, key, mParams.get(key));
         }
         mUrl = mUrl.substring(0, mUrl.length() - 1);
     }

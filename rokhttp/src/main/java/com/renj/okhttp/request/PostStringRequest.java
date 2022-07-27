@@ -41,7 +41,7 @@ public class PostStringRequest extends ROkHttpRequest<PostStringRequest> {
 
     @Override
     protected <E> void putParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse) {
-        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_TEXT, mString);
+        RequestBody requestBody = RequestBody.create(mString, MEDIA_TYPE_TEXT);
         builder.post(requestBody);
     }
 }

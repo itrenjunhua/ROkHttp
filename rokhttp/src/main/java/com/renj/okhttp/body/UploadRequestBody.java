@@ -3,6 +3,8 @@ package com.renj.okhttp.body;
 
 import com.renj.okhttp.request.UploadFileRequest;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -73,7 +75,7 @@ public class UploadRequestBody extends RequestBody {
      * @throws IOException 异常
      */
     @Override
-    public void writeTo(BufferedSink sink) throws IOException {
+    public void writeTo(@NotNull BufferedSink sink) throws IOException {
         // 包装
         if (mBuffer == null)
             mBuffer = Okio.buffer(customSink(sink));
@@ -91,7 +93,7 @@ public class UploadRequestBody extends RequestBody {
             long contentLength = 0L;
 
             @Override
-            public void write(Buffer source, long byteCount) throws IOException {
+            public void write(@NotNull Buffer source, long byteCount) throws IOException {
                 super.write(source, byteCount);
                 // 获得contentLength的值，后续不再调用
                 if (contentLength == 0)

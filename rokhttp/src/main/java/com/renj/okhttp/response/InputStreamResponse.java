@@ -3,7 +3,6 @@ package com.renj.okhttp.response;
 import com.renj.okhttp.ROkHttpException;
 import com.renj.okhttp.ROkHttpResponse;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import okhttp3.Call;

@@ -43,8 +43,7 @@ public abstract class KeyValueRequest<T extends KeyValueRequest<?>> extends ROkH
      * @return 本身对象，方便链式调用
      */
     public T param(@NonNull String key, @NonNull String value) {
-        addParam(key, value);
-        return (T) this;
+        return addParam(key, value);
     }
 
     /**

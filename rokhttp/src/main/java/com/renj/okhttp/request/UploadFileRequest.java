@@ -58,8 +58,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * @return 本身对象，方便链式调用
      */
     public UploadFileRequest param(@NonNull String key, @NonNull String value) {
-        addParam(key, value);
-        return this;
+        return addParam(key, value);
     }
 
     /**
@@ -97,8 +96,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * @return 本身对象，方便链式调用
      */
     public UploadFileRequest file(@NonNull String name, @NonNull File file) {
-        addFile(name, file);
-        return this;
+        return addFile(name, file);
     }
 
     /**
@@ -109,8 +107,8 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * @return 本身对象，方便链式调用
      */
     public UploadFileRequest addFile(@NonNull String name, @NonNull File file) {
-        if (this.mFiles == null) this.mFiles = new LinkedList<Map<String, File>>();
-        Map<String, File> map = new HashMap<String, File>();
+        if (this.mFiles == null) this.mFiles = new LinkedList<>();
+        Map<String, File> map = new HashMap<>();
         map.put(name, file);
         this.mFiles.add(map);
         return this;
@@ -139,8 +137,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * @return 本身对象，方便链式调用
      */
     public UploadFileRequest file(@NonNull String name, @NonNull String fileName, @NonNull byte[] contentBytes) {
-        addFile(name, fileName, contentBytes);
-        return this;
+        return addFile(name, fileName, contentBytes);
     }
 
     /**
@@ -181,17 +178,11 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
             RLog.w("没有上传任何文件和参数，将 POST 请求方式变为 GET 请求方式");
         } else {
             // 将参数加入到请求中
-            builder.post(new UploadRequestBody(multipartBodyBuilder.build(), new UploadProgressListener() {
-                @Override
-                public void onProgress(final long completeLength, final long totalLength, final boolean isFinish) {
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mROkHttpResponse.onProgress(completeLength, totalLength, isFinish);
-                        }
-                    });
-                }
-            }));
+            builder.post(new UploadRequestBody(multipartBodyBuilder.build(),
+                            (completeLength, totalLength, isFinish) ->
+                                    mHandler.post(() -> mROkHttpResponse.onProgress(completeLength, totalLength, isFinish))
+                    )
+            );
         }
     }
 
@@ -202,7 +193,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
         if (this.mTempFiles == null || this.mTempFiles.isEmpty()) return;
         for (TempFile tempFile : mTempFiles) {
             multipartBodyBuilder.addFormDataPart(tempFile.name, tempFile.fileName,
-                    RequestBody.create(tempFile.mediaType, tempFile.contentBytes));
+                    RequestBody.create(tempFile.contentBytes, tempFile.mediaType));
         }
     }
 
@@ -216,7 +207,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
                 File file = fileMap.get(name);
                 String fileName = getFileName(file);
                 multipartBodyBuilder.addFormDataPart(name, fileName,
-                        RequestBody.create(MediaType.parse(getFileMime(fileName)), file));
+                        RequestBody.create(file, MediaType.parse(getFileMime(fileName))));
             }
         }
     }
@@ -273,8 +264,7 @@ public class UploadFileRequest extends ROkHttpRequest<UploadFileRequest> {
      * 判断List是否为 null 或者 元素为空
      */
     private boolean isEmptyList(List<?> list) {
-        if (null == list || list.isEmpty()) return true;
-        return false;
+        return null == list || list.isEmpty();
     }
 
     /**

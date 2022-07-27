@@ -41,7 +41,7 @@ public class PostJsonRequest extends ROkHttpRequest<PostJsonRequest> {
 
     @Override
     protected <E> void putParams(Request.Builder builder, ROkHttpResponse<E> mROkHttpResponse) {
-        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, mJson);
+        RequestBody requestBody = RequestBody.create(mJson, MEDIA_TYPE_JSON);
         builder.post(requestBody);
     }
 }

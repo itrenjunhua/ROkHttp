@@ -3,6 +3,8 @@ package com.renj.okhttp.body;
 
 import com.renj.okhttp.request.DownloadFileRequest;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -65,6 +67,7 @@ public class DownloadResponseBody extends ResponseBody {
         return this.mResponseBody.contentLength();
     }
 
+    @NotNull
     @Override
     public BufferedSource source() {
         // 包装
@@ -81,7 +84,7 @@ public class DownloadResponseBody extends ResponseBody {
             long contentLength = 0L;
 
             @Override
-            public long read(Buffer sink, long byteCount) throws IOException {
+            public long read(@NotNull Buffer sink, long byteCount) throws IOException {
                 long byteRead = super.read(sink, byteCount);
                 // 如果contentLength()不知道长度，会返回-1
                 if (contentLength == 0) contentLength = contentLength();
