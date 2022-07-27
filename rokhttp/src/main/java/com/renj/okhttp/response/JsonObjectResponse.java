@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * ======================================================================
@@ -30,9 +31,14 @@ public abstract class JsonObjectResponse extends ROkHttpResponse<JSONObject> {
     @Override
     public void parseResponse(Call call, Response response) {
         try {
-            String responseStr = response.body().string();
-            JSONObject jsonObject = new JSONObject(responseStr);
-            onParseSucceed(call, jsonObject);
+            ResponseBody responseBody = response.body();
+            if (responseBody == null) {
+                onOkHttpError(call, new ROkHttpException("响应 Response 对象为 null"));
+            } else {
+                String responseStr = responseBody.string();
+                JSONObject jsonObject = new JSONObject(responseStr);
+                onParseSucceed(call, jsonObject);
+            }
         } catch (IOException e) {
             e.printStackTrace();
             onOkHttpError(call, new ROkHttpException(e));

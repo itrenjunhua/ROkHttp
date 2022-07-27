@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * ======================================================================
@@ -25,7 +26,12 @@ public abstract class ByteArrayResponse extends ROkHttpResponse<byte[]> {
     @Override
     public void parseResponse(Call call, Response response) {
         try {
-            onParseSucceed(call, response.body().bytes());
+            ResponseBody responseBody = response.body();
+            if (responseBody == null) {
+                onOkHttpError(call, new ROkHttpException("响应 Response 对象为 null"));
+            } else {
+                onParseSucceed(call, responseBody.bytes());
+            }
         } catch (IOException e) {
             e.printStackTrace();
             onOkHttpError(call, new ROkHttpException(e));

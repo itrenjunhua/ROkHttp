@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 import okhttp3.Call;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * ======================================================================
@@ -26,7 +27,11 @@ public abstract class InputStreamResponse extends ROkHttpResponse<InputStream> {
     @Override
     public void parseResponse(Call call, Response response) {
         try {
-            onParseSucceed(call, response.body().byteStream());
+            ResponseBody responseBody = response.body();
+            if (responseBody == null)
+                onOkHttpError(call, new ROkHttpException("响应 Response 对象为 null"));
+            else
+                onParseSucceed(call, responseBody.byteStream());
         } catch (Exception e) {
             onOkHttpError(call, new ROkHttpException(e));
         }

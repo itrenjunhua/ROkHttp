@@ -47,9 +47,8 @@ public abstract class DownLoadResponse extends ROkHttpResponse<String> {
      * 保存文件
      *
      * @param response 响应对象
-     * @return 是否保存成功
      */
-    private boolean saveFile(Response response) throws ROkHttpException {
+    private void saveFile(Response response) throws ROkHttpException {
         int len;
         byte[] bytes = new byte[1024 * 8]; // 每次读取8kb
         RandomAccessFile randomAccessFile = null;
@@ -61,7 +60,6 @@ public abstract class DownLoadResponse extends ROkHttpResponse<String> {
             while ((len = inputStream.read(bytes)) != -1) {
                 randomAccessFile.write(bytes, 0, len);
             }
-            return true;
         } catch (IOException e) {
             throw new ROkHttpException("将文件写入到 \"" + mSaveFilePath + " \"时出错！", e);
         } finally {

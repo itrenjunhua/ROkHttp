@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 
 import okhttp3.Call;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * ======================================================================
@@ -51,9 +52,14 @@ public abstract class BeanResponse<T> extends ROkHttpResponse<T> {
     protected void parseResponse(Call call, Response response) {
         Gson gson = new Gson();
         try {
-            String json = response.body().string();
-            // 调用onSucceed()方法并传递解析结果
-            onParseSucceed(call, gson.fromJson(json, mClazz));
+            ResponseBody responseBody = response.body();
+            if (responseBody == null) {
+                onOkHttpError(call, new ROkHttpException("响应 Response 对象为 null"));
+            } else {
+                String json = responseBody.string();
+                // 调用onSucceed()方法并传递解析结果
+                onParseSucceed(call, gson.fromJson(json, mClazz));
+            }
         } catch (IOException e) {
             e.printStackTrace();
             // 发生异常，onOkHttpError()方法
