@@ -171,9 +171,13 @@ public abstract class ROkHttpRequest<T extends ROkHttpRequest<?>> {
      * @param mROkHttpResponse ROkHttpResponseHandler抽象类的实现类对象
      */
     public <E> void enqueue(@NonNull final ROkHttpResponse<E> mROkHttpResponse) {
+        // 开始访问接口
+        mROkHttpResponse.onStart(mUrl);
+
         // 对网络链接进行判断
         if (!isConnectedByState()) {
             mROkHttpResponse.onNetWork();
+            mROkHttpResponse.onEnd(mUrl);
             return;
         }
         Call call = createCall(mROkHttpResponse);
@@ -182,12 +186,14 @@ public abstract class ROkHttpRequest<T extends ROkHttpRequest<?>> {
             @Override
             public void onFailure(final Call call, final IOException e) {
                 mROkHttpResponse.onOkHttpError(call, new ROkHttpException(e));
+                mROkHttpResponse.onEnd(mUrl);
             }
 
             @Override
             public void onResponse(final Call call, final Response response) throws IOException {
                 // 将解析过程放在非UI线程
                 mROkHttpResponse.parseResponse(call, response);
+                mROkHttpResponse.onEnd(mUrl);
             }
         });
     }

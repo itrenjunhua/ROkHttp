@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * ======================================================================
@@ -85,6 +86,8 @@ import okhttp3.OkHttpClient;
                         ROkHttpManager.mOkHttpClient = okHttpClient;
                     } else {
                         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+                        if (RLog.isShowLog())
+                            builder.addInterceptor(new HttpLoggingInterceptor());
                         ROkHttpManager.mOkHttpClient = builder.build();
                     }
                 }

@@ -1,7 +1,6 @@
 package com.renj.okhttp;
 
 import android.app.Application;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -362,7 +361,7 @@ public class ROkHttp {
     /* ----------------------- 日志管理 ----------------------- */
 
     /**
-     * 设置是否显示日志
+     * 设置是否显示日志，<b>注意，如果需要打印访问日志信息，需要在 {@link #initROkHttp(Application)} 之前调用。</b>
      *
      * @param showLog true：显示  false：不显示
      */

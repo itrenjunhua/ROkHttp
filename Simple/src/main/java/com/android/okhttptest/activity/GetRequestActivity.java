@@ -57,6 +57,11 @@ public class GetRequestActivity extends AppCompatActivity {
                 .url(Constant.ALL_URL)
                 .enqueue(new StringResponse() {
                     @Override
+                    public void onStart(String url) {
+                        super.onStart(url);
+                    }
+
+                    @Override
                     public void onSucceed(Call call, String result) {
                         stringResult.setText(result);
                     }
@@ -71,6 +76,11 @@ public class GetRequestActivity extends AppCompatActivity {
                     public void onError(Call call, ROkHttpException error) {
                         // 处理错误
                         Log.e("GetRequestActivity",error + "");
+                    }
+
+                    @Override
+                    public void onEnd(String url) {
+                        super.onEnd(url);
                     }
                 });
     }

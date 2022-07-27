@@ -30,6 +30,13 @@ public abstract class ROkHttpResponse<T> {
     }
 
     /**
+     * 开始访问接口
+     */
+    public void onStart(String url) {
+        RLog.i("【start request】 <== url : " + url + " ==> 【start】");
+    }
+
+    /**
      * 解析响应结果之后调用，将解析后的数据作为参数传递，UI线程。<br/>
      * 在使用时重写该方法即可得到响应数据<br/><br/>
      * <b>特别注意：</b><br/>
@@ -100,4 +107,11 @@ public abstract class ROkHttpResponse<T> {
      * @param response 服务器的响应结果
      */
     protected abstract void parseResponse(Call call, Response response);
+
+    /**
+     * 结束访问接口
+     */
+    public void onEnd(String url) {
+        RLog.i("【end request】 <== url : " + url + " ==> 【end】");
+    }
 }

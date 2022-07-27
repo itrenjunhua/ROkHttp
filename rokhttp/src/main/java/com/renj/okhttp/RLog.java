@@ -15,13 +15,17 @@ import android.util.Log;
  * ======================================================================
  */
 public class RLog {
-    private static String TAG = "ROkHttpLog";
+    private static String TAG = "ROkHttp";
     private static boolean showLog = BuildConfig.DEBUG;
     private static boolean IS_FULL_CLASSNAME;
     private static int LOG_LEVEL = Log.VERBOSE;
 
     public static void setShowLog(boolean showLog) {
         RLog.showLog = showLog;
+    }
+
+    public static boolean isShowLog() {
+        return showLog;
     }
 
     public static void setFullClassName(boolean isFullClassName) {
